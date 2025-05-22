@@ -1,68 +1,66 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>Regional de Andebol Santiago Sul</title>
   <script src="https://cdn.jsdelivr.net/npm/tabletop@1.6.0/src/tabletop.min.js"></script>
   <style>
-    body { font-family: sans-serif; padding: 20px; max-width: 800px; margin: auto; }
+    body { font-family: sans-serif; padding: 20px; max-width: 900px; margin: auto; }
     h1, h2 { text-align: center; }
     table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-    th, td { border: 1px solid #ccc; padding: 6px; text-align: center; }
-    th { background-color: #007bff; color: white; }
+    th, td { border: 1px solid #ccc; padding: 8px; text-align: center; }
+    th { background-color: #0055a5; color: white; }
   </style>
 </head>
 <body>
 
-<h1>Regional de Andebol Santiago Sul</h1>
-<h2>Sénior Masculino</h2>
-<div id="masculino">Carregando...</div>
+  <h1>Regional de Andebol Santiago Sul</h1>
 
-<h2>Sénior Feminino</h2>
-<div id="feminino">Carregando...</div>
+  <h2>Sénior Masculino</h2>
+  <div id="masculino">Carregando...</div>
 
-<script>
-  function criarTabela(dados) {
-    let html = '<table><thead><tr>';
-    const colunas = Object.keys(dados[0]);
-    colunas.forEach(c => html += `<th>${c}</th>`);
-    html += '</tr></thead><tbody>';
-    dados.forEach(linha => {
-      html += '<tr>';
-      colunas.forEach(c => html += `<td>${linha[c] || ''}</td>`);
-      html += '</tr>';
-    });
-    html += '</tbody></table>';
-    return html;
-  }
+  <h2>Sénior Feminino</h2>
+  <div id="feminino">Carregando...</div>
 
-  function mostrarTabela(sheetName, containerId) {
-    Tabletop.init({
-      key: '1J-aU5t8oPOBZZkVIEQZ1ay08m_LMJx_pPFagsSg3Kdk',
-      simpleSheet: false,
-      wanted: [sheetName],
-      callback: function(data, tabletop) {
-        try {
-          const sheetData = tabletop.sheets(sheetName).all();
-          if (!sheetData || sheetData.length === 0) {
-            document.getElementById(containerId).innerHTML = `<p>⚠️ Nenhum dado encontrado para "${sheetName}".</p>`;
-            return;
+  <script>
+    function criarTabela(dados) {
+      let html = '<table><thead><tr>';
+      const colunas = Object.keys(dados[0]);
+      colunas.forEach(c => html += `<th>${c}</th>`);
+      html += '</tr></thead><tbody>';
+      dados.forEach(linha => {
+        html += '<tr>';
+        colunas.forEach(c => html += `<td>${linha[c] || ''}</td>`);
+        html += '</tr>';
+      });
+      html += '</tbody></table>';
+      return html;
+    }
+
+    function mostrarTabela(planilhaID, sheetName, containerId) {
+      Tabletop.init({
+        key: planilhaID,
+        simpleSheet: false,
+        wanted: [sheetName],
+        callback: function(data, tabletop) {
+          try {
+            const sheetData = tabletop.sheets(sheetName).all();
+            document.getElementById(containerId).innerHTML = criarTabela(sheetData);
+          } catch (err) {
+            document.getElementById(containerId).innerHTML = `<p style="color:red;">Erro: ${err.message}</p>`;
           }
-          document.getElementById(containerId).innerHTML = criarTabela(sheetData);
-        } catch (err) {
-          document.getElementById(containerId).innerHTML = `<p style="color:red;">❌ Erro ao carregar "${sheetName}": ${err.message}</p>`;
         }
-      }
-    });
-  }
+      });
+    }
 
-  window.onload = function() {
-    mostrarTabela('Sénior Masculino', 'masculino');
-    mostrarTabela('Sénior Feminino', 'feminino');
-  };
-</script>
+    window.onload = function() {
+      mostrarTabela('1J-aU5t8oPOBZZkVIEQZ1ay08m_LMJx_pPFagsSg3Kdk', 'Sénior Masculino', 'masculino');
+      mostrarTabela('1QXpPBiFxJNbqMFQ5agtxp6e243v4k-SrVFtceim7tHE', 'Sénior Feminino', 'feminino');
+    };
+  </script>
 
 </body>
 </html>
+
 
 
