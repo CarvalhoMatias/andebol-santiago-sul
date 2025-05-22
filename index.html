@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Regional de Andebol Santiago Sul</title>
   <style>
     body { font-family: sans-serif; max-width: 960px; margin: auto; padding: 20px; background: #f9f9f9; }
@@ -17,12 +17,12 @@
   <h1>Regional de Andebol Santiago Sul</h1>
 
   <div class="section">
-    <h2>Sénior Feminino</h2>
+    <h2>Sénior Masculino</h2>
     <div id="tabela-masculino">Carregando tabela...</div>
   </div>
 
   <div class="section">
-    <h2>Sénior Masculino</h2>
+    <h2>Sénior Feminino</h2>
     <div id="tabela-feminino">Carregando tabela...</div>
   </div>
 
@@ -48,13 +48,10 @@
       }
     }
 
-    // Links CSV públicos:
-    const urlMasculino = "https://docs.google.com/spreadsheets/d/e/2PACX-1vT_BCGGvtUe-5jH0Yls7hhNA7TDFDQfm6zAiz-j87-sc5OEXwLOVaNSQU20tAtefgTBp87ZzhomfJVq/pub?gid=0&single=true&output=csv";
-const urlFeminino = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSmGgChlRuHWXjidxaYH9QLW-ICqBLqO3bXcQOXElNaffXDacs7eTb6qjEpMYKzSq-IFJN94i4ajbX-/pub?gid=0&single=true&output=csv";
+    // Aqui estão os links corrigidos:
+    const urlMasculino = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSmGgChlRuHWXjidxaYH9QLW-ICqBLqO3bXcQOXElNaffXDacs7eTb6qjEpMYKzSq-IFJN94i4ajbX-/pub?gid=0&single=true&output=csv";
+    const urlFeminino = "https://docs.google.com/spreadsheets/d/e/2PACX-1vT_BCGGvtUe-5jH0Yls7hhNA7TDFDQfm6zAiz-j87-sc5OEXwLOVaNSQU20tAtefgTBp87ZzhomfJVq/pub?gid=0&single=true&output=csv";
 
-
-
-    // Carregar ao iniciar
     window.onload = () => {
       carregarCSV(urlMasculino, "tabela-masculino");
       carregarCSV(urlFeminino, "tabela-feminino");
