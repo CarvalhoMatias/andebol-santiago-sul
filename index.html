@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Regional de Andebol Santiago Sul</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 20px; background: #f9f9f9; }
+    h1, h2 { text-align: center; color: #003366; }
+    table { width: 100%; border-collapse: collapse; margin: 20px 0; background: white; }
+    th, td { padding: 10px; border: 1px solid #ccc; text-align: center; }
+    th { background-color: #003366; color: white; }
+    .container { max-width: 1000px; margin: auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+    .section { margin-top: 40px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Regional de Andebol Santiago Sul</h1>
+
+    <div class="section">
+      <h2>Classificação - Sénior Masculino</h2>
+      <table id="tabela-masculino">
+        <thead>
+          <tr>
+            <th>Clube</th><th>J</th><th>V</th><th>E</th><th>D</th><th>GM</th><th>GS</th><th>DG</th><th>Pts</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <div class="section">
+      <h2>Classificação - Sénior Feminino</h2>
+      <table id="tabela-feminino">
+        <thead>
+          <tr>
+            <th>Clube</th><th>J</th><th>V</th><th>E</th><th>D</th><th>GM</th><th>GS</th><th>DG</th><th>Pts</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/tabletop@1.6.0/tabletop.min.js"></script>
+  <script>
+    const publicSpreadsheetUrl = 'https://docs.google.com/spreadsheets/d/1J-aU5t8oPOBZZkVIEQZ1ay08m_LMJx_pPFagsSg3Kdk/pubhtml';
+
+    function showInfo(data, tabletop) {
+      const masculino = tabletop.sheets("Sénior Masculino").all();
+      const feminino = tabletop.sheets("Sénior Feminino").all();
+
+      const tabelaMasculino = document.querySelector("#tabela-masculino tbody");
+      masculino.forEach(row => {
+        tabelaMasculino.innerHTML += `
+          <tr><td>${row.Clube}</td><td>${row.J}</td><td>${row.V}</td><td>${row.E}</td>
+          <td>${row.D}</td><td>${row.GM}</td><td>${row.GS}</td><td>${row.DG}</td><td>${row.Pts}</td></tr>`;
+      });
+
+      const tabelaFeminino = document.querySelector("#tabela-feminino tbody");
+      feminino.forEach(row => {
+        tabelaFeminino.innerHTML += `
+          <tr><td>${row.Clube}</td><td>${row.J}</td><td>${row.V}</td><td>${row.E}</td>
+          <td>${row.D}</td><td>${row.GM}</td><td>${row.GS}</td><td>${row.DG}</td><td>${row.Pts}</td></tr>`;
+      });
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      Tabletop.init({
+        key: publicSpreadsheetUrl,
+        callback: showInfo,
+        simpleSheet: false
+      });
+    });
+  </script>
+</body>
+</html>
