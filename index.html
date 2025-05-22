@@ -2,69 +2,67 @@
 <html lang="pt">
 <head>
   <meta charset="UTF-8" />
-  <title>Regional de Andebol Santiago Sul - Classificação</title>
-  <style>
-    body { font-family: Arial, sans-serif; max-width: 900px; margin: auto; padding: 20px; }
-    h1, h2 { text-align: center; }
-    table { width: 100%; border-collapse: collapse; margin-bottom: 40px; }
-    th, td { border: 1px solid #ccc; padding: 8px; text-align: center; }
-    th { background: #0055a5; color: white; }
-    caption { font-weight: bold; margin-bottom: 10px; font-size: 1.2em; }
-  </style>
+  <title>Regional de Andebol Santiago Sul</title>
   <script src="https://cdn.jsdelivr.net/npm/tabletop@1.6.0/src/tabletop.min.js"></script>
+  <style>
+    body { font-family: sans-serif; padding: 20px; max-width: 800px; margin: auto; }
+    h1, h2 { text-align: center; }
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    th, td { border: 1px solid #ccc; padding: 6px; text-align: center; }
+    th { background-color: #007bff; color: white; }
+  </style>
 </head>
 <body>
 
-  <h1>Regional de Andebol Santiago Sul</h1>
-  <h2>Tabela de Classificação - Sénior Masculino</h2>
-  <div id="masculino"></div>
+<h1>Regional de Andebol Santiago Sul</h1>
+<h2>Sénior Masculino</h2>
+<div id="masculino">Carregando...</div>
 
-  <h2>Tabela de Classificação - Sénior Feminino</h2>
-  <div id="feminino"></div>
+<h2>Sénior Feminino</h2>
+<div id="feminino">Carregando...</div>
 
-  <script>
-    function criarTabela(dados) {
-      let html = '<table><thead><tr>';
-      // Cabeçalhos (pegar do primeiro objeto)
-      const colunas = Object.keys(dados[0]);
-      for (const col of colunas) {
-        html += `<th>${col}</th>`;
-      }
-      html += '</tr></thead><tbody>';
-      // Linhas
-      for (const linha of dados) {
-        html += '<tr>';
-        for (const col of colunas) {
-          html += `<td>${linha[col]}</td>`;
-        }
-        html += '</tr>';
-      }
-      html += '</tbody></table>';
-      return html;
-    }
+<script>
+  function criarTabela(dados) {
+    let html = '<table><thead><tr>';
+    const colunas = Object.keys(dados[0]);
+    colunas.forEach(c => html += `<th>${c}</th>`);
+    html += '</tr></thead><tbody>';
+    dados.forEach(linha => {
+      html += '<tr>';
+      colunas.forEach(c => html += `<td>${linha[c] || ''}</td>`);
+      html += '</tr>';
+    });
+    html += '</tbody></table>';
+    return html;
+  }
 
-    function mostrarTabela(sheetName, containerId) {
-      Tabletop.init({
-        key: '1J-aU5t8oPOBZZkVIEQZ1ay08m_LMJx_pPFagsSg3Kdk',
-        simpleSheet: false,
-        callback: function(data, tabletop) {
-          // Pega a aba pelo nome
+  function mostrarTabela(sheetName, containerId) {
+    Tabletop.init({
+      key: '1J-aU5t8oPOBZZkVIEQZ1ay08m_LMJx_pPFagsSg3Kdk',
+      simpleSheet: false,
+      wanted: [sheetName],
+      callback: function(data, tabletop) {
+        try {
           const sheetData = tabletop.sheets(sheetName).all();
-          if (sheetData.length === 0) {
-            document.getElementById(containerId).innerHTML = '<p>Sem dados para exibir.</p>';
+          if (!sheetData || sheetData.length === 0) {
+            document.getElementById(containerId).innerHTML = `<p>⚠️ Nenhum dado encontrado para "${sheetName}".</p>`;
             return;
           }
-          const tabela = criarTabela(sheetData);
-          document.getElementById(containerId).innerHTML = tabela;
+          document.getElementById(containerId).innerHTML = criarTabela(sheetData);
+        } catch (err) {
+          document.getElementById(containerId).innerHTML = `<p style="color:red;">❌ Erro ao carregar "${sheetName}": ${err.message}</p>`;
         }
-      });
-    }
+      }
+    });
+  }
 
-    window.onload = function() {
-      mostrarTabela('Sénior Masculino', 'masculino');
-      mostrarTabela('Sénior Feminino', 'feminino');
-    }
-  </script>
+  window.onload = function() {
+    mostrarTabela('Sénior Masculino', 'masculino');
+    mostrarTabela('Sénior Feminino', 'feminino');
+  };
+</script>
+
 </body>
 </html>
+
 
