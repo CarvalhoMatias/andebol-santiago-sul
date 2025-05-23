@@ -64,16 +64,7 @@
 
     const urlClassificacaoMasculino = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSmGgChlRuHWXjidxaYH9QLW-ICqBLqO3bXcQOXElNaffXDacs7eTb6qjEpMYKzSq-IFJN94i4ajbX-/pub?gid=0&single=true&output=csv";
     const urlClassificacaoFeminino = "https://docs.google.com/spreadsheets/d/e/2PACX-1vT_BCGGvtUe-5jH0Yls7hhNA7TDFDQfm6zAiz-j87-sc5OEXwLOVaNSQU20tAtefgTBp87ZzhomfJVq/pub?gid=0&single=true&output=csv";
-    const urlResultadosMasculino   = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSmGgChlRuHWXjidxaYH9QLW-ICqBLqO3bXcQOXElNaffXDacs7eTb6qjEpMYKzSq-IFJN94i4ajbX-/pub?gid=34368686&single=true&output=csv";
-    const urlResultadosFeminino    = "https://docs.google.com/spreadsheets/d/e/2PACX-1vT_BCGGvtUe-5jH0Yls7hhNA7TDFDQfm6zAiz-j87-sc5OEXwLOVaNSQU20tAtefgTBp87ZzhomfJVq/pub?gid=633813531&single=true&output=csv";
 
-    window.onload = () => {
-      carregarCSV(urlClassificacaoMasculino, "classificacao-masculino");
-      carregarCSV(urlClassificacaoFeminino, "classificacao-feminino");
-      carregarCSV(urlResultadosMasculino, "resultados-masculino");
-      carregarCSV(urlResultadosFeminino, "resultados-feminino");
-    };
-  </script>
-
-</body>
-</html>
+    // 🔁 CORRIGIDO AQUI:
+    const urlResultadosMasculino = "https://docs.google.com/spreadsheets/d/e/2PACX-1vT_BCGGvtUe-5jH0Yls7hhNA7TDFDQfm6zAiz-j87-sc5OEXwLOVaNSQU20tAtefgTBp87ZzhomfJVq/pub?gid=633813531&single=true&output=csv";
+    const urlResultadosFeminino  = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSmGgChlRuHWXjidxaYH9QLW-ICqBLqO3bXc
