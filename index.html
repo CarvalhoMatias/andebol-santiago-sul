@@ -22,22 +22,22 @@
 
   <div class="section">
     <h2>Classificação - Sénior Masculino</h2>
-    <div id="tabela-masculino">Carregando tabela...</div>
+    <div id="classificacao-masculino">Carregando...</div>
   </div>
 
   <div class="section">
     <h2>Classificação - Sénior Feminino</h2>
-    <div id="tabela-feminino">Carregando tabela...</div>
+    <div id="classificacao-feminino">Carregando...</div>
   </div>
 
   <div class="section">
     <h2>Resultados - Sénior Masculino</h2>
-    <div id="resultados-masculino">Carregando resultados...</div>
+    <div id="resultados-masculino">Carregando...</div>
   </div>
 
   <div class="section">
     <h2>Resultados - Sénior Feminino</h2>
-    <div id="resultados-feminino">Carregando resultados...</div>
+    <div id="resultados-feminino">Carregando...</div>
   </div>
 
   <script>
@@ -58,18 +58,18 @@
         html += "</tbody></table>";
         document.getElementById(containerId).innerHTML = html;
       } catch (e) {
-        document.getElementById(containerId).innerHTML = `<p style="color:red;">Erro ao carregar tabela.</p>`;
+        document.getElementById(containerId).innerHTML = `<p style="color:red;">Erro ao carregar dados.</p>`;
       }
     }
 
     const urlClassificacaoMasculino = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSmGgChlRuHWXjidxaYH9QLW-ICqBLqO3bXcQOXElNaffXDacs7eTb6qjEpMYKzSq-IFJN94i4ajbX-/pub?gid=0&single=true&output=csv";
     const urlClassificacaoFeminino = "https://docs.google.com/spreadsheets/d/e/2PACX-1vT_BCGGvtUe-5jH0Yls7hhNA7TDFDQfm6zAiz-j87-sc5OEXwLOVaNSQU20tAtefgTBp87ZzhomfJVq/pub?gid=0&single=true&output=csv";
-    const urlResultadosMasculino = "https://docs.google.com/spreadsheets/d/e/2PACX-1vT_BCGGvtUe-5jH0Yls7hhNA7TDFDQfm6zAiz-j87-sc5OEXwLOVaNSQU20tAtefgTBp87ZzhomfJVq/pub?gid=0&single=true&output=csv";
-    const urlResultadosFeminino = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSmGgChlRuHWXjidxaYH9QLW-ICqBLqO3bXcQOXElNaffXDacs7eTb6qjEpMYKzSq-IFJN94i4ajbX-/pub?gid=0&single=true&output=csv";
+    const urlResultadosMasculino   = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSmGgChlRuHWXjidxaYH9QLW-ICqBLqO3bXcQOXElNaffXDacs7eTb6qjEpMYKzSq-IFJN94i4ajbX-/pub?gid=34368686&single=true&output=csv";
+    const urlResultadosFeminino    = "https://docs.google.com/spreadsheets/d/e/2PACX-1vT_BCGGvtUe-5jH0Yls7hhNA7TDFDQfm6zAiz-j87-sc5OEXwLOVaNSQU20tAtefgTBp87ZzhomfJVq/pub?gid=633813531&single=true&output=csv";
 
     window.onload = () => {
-      carregarCSV(urlClassificacaoMasculino, "tabela-masculino");
-      carregarCSV(urlClassificacaoFeminino, "tabela-feminino");
+      carregarCSV(urlClassificacaoMasculino, "classificacao-masculino");
+      carregarCSV(urlClassificacaoFeminino, "classificacao-feminino");
       carregarCSV(urlResultadosMasculino, "resultados-masculino");
       carregarCSV(urlResultadosFeminino, "resultados-feminino");
     };
