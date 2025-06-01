@@ -6,7 +6,7 @@
   <title>Regional de Andebol Santiago Sul</title>
   <style>
     :root {
-      --primary: #2e7d32;
+      --primary: #66bb6a;
       --background: #f4f6f8;
       --text: #222;
       --accent: #ff6f00;
@@ -82,7 +82,39 @@
       color: #ffcc80;
       text-decoration: none;
     }
-  </style>
+      html {
+      scroll-behavior: smooth;
+    }
+
+    nav a.active {
+      border-bottom: 2px solid var(--primary);
+    }
+
+@media (max-width: 768px) {
+  header img {
+    max-height: 50px;
+  }
+  nav {
+    flex-direction: column;
+    align-items: center;
+  }
+  nav a {
+    margin: 0.5em 0;
+  }
+  main {
+    padding: 0.5em;
+  }
+  iframe {
+    height: 500px;
+  }
+  h1 {
+    font-size: 1.5em;
+  }
+  h2 {
+    font-size: 1.2em;
+  }
+}
+</style>
 </head>
 <body>
   <header>
@@ -92,9 +124,9 @@
   </header>
 
   <nav>
-    <a href="#classificacao">Classificação</a>
-    <a href="#resultados">Resultados</a>
-    <a href="#marcadores">Melhores Marcadores</a>
+    <a href="#classificacao" onclick="setActive(this)" class="active">Classificação</a>
+    <a href="#resultados" onclick="setActive(this)">Resultados</a>
+    <a href="#marcadores" onclick="setActive(this)">Melhores Marcadores</a>
   </nav>
 
   <main>
@@ -124,5 +156,11 @@
     &copy; 2025 ARASSUL - Associação Regional de Andebol de Santiago Sul<br>
     📧 Contacto: <a href="mailto:arandebolssul@gmail.com">arandebolssul@gmail.com</a>
   </footer>
+<script>
+    function setActive(link) {
+      document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+      link.classList.add('active');
+    }
+</script>
 </body>
 </html>
