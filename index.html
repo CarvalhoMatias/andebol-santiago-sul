@@ -1,116 +1,162 @@
-<body>
-  <header>
-    <button class="theme-toggle" onclick="toggleDarkMode()">🌓 Tema</button>
-    <img src="20250506_1330_Logotipo de Andebol Sul_remix_01jtk01hdsenvbcs12ch68jjd1.png" alt="Logotipo ARASSUL">
-    <h1>Regional de Andebol Santiago Sul</h1>
-    <p>Temporada 2024/2025</p>
-  </header>
-
-  <nav>
-    <a href="#" onclick="mostrarAba('classificacao', this)">Classificação</a>
-    <a href="#" onclick="mostrarAba('resultados', this)">Resultados</a>
-    <a href="#" onclick="mostrarAba('marcadores', this)" class="active-tab">Melhores Marcadores</a>
-  </nav>
-
-  <main>
-    <section id="classificacao" class="active">
-      <h2>Classificação - Sénior Masculino</h2>
-      <div id="classificacao-masculino">Carregando...</div>
-      <h2>Classificação - Sénior Feminino</h2>
-      <div id="classificacao-feminino">Carregando...</div>
-    </section>
-
-    <section id="resultados">
-      <h2>Resultados - Sénior Masculino</h2>
-      <div id="resultados-masculino">Carregando...</div>
-      <h2>Resultados - Sénior Feminino</h2>
-      <div id="resultados-feminino">Carregando...</div>
-    </section>
-
-    <section id="marcadores">
-      <h2>Melhores Marcadores - Sénior Masculino</h2>
-      <iframe 
-        src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSmGgChlRuHWXjidxaYH9QLW-ICqBLqO3bXcQOXElNaffXDacs7eTb6qjEpMYKzSq-IFJN94i4ajbX-/pub?gid=498053061&single=true&output=html"
-        allowfullscreen>
-      </iframe>
-      <h2>Melhores Marcadores - Sénior Feminino</h2>
-      <iframe 
-        src="https://docs.google.com/spreadsheets/d/e/2PACX-1vT_BCGGvtUe-5jH0Yls7hhNA7TDFDQfm6zAiz-j87-sc5OEXwLOVaNSQU20tAtefgTBp87ZzhomfJVq/pub?gid=1661240807&single=true&output=html"
-        allowfullscreen>
-      </iframe>
-    </section>
-  </main>
-
-  <footer>
-    &copy; 2025 ARASSUL - Associação Regional de Andebol de Santiago Sul<br>
-    📧 Contacto: <a href="mailto:arandebolssul@gmail.com" style="color: #ffcc80; text-decoration: none;">arandebolssul@gmail.com</a>
-    <div class="social-share">
-      <a href="https://wa.me/?text=https://carvalhomatias.github.io/andebol-santiago-sul/" target="_blank">📲 WhatsApp</a>
-      <a href="https://www.facebook.com/sharer/sharer.php?u=https://carvalhomatias.github.io/andebol-santiago-sul/" target="_blank">📘 Facebook</a>
-      <a href="#" onclick="navigator.clipboard.writeText(window.location.href); alert('Link copiado!');">🔗 Copiar Link</a>
-    </div>
-  </footer>
-
-  <script>
-    const urls = [
-      {
-        url: "https://docs.google.com/spreadsheets/d/e/2PACX-1vSmGgChlRuHWXjidxaYH9QLW-ICqBLqO3bXcQOXElNaffXDacs7eTb6qjEpMYKzSq-IFJN94i4ajbX-/pub?gid=0&single=true&output=csv",
-        container: "classificacao-masculino"
-      },
-      {
-        url: "https://docs.google.com/spreadsheets/d/e/2PACX-1vT_BCGGvtUe-5jH0Yls7hhNA7TDFDQfm6zAiz-j87-sc5OEXwLOVaNSQU20tAtefgTBp87ZzhomfJVq/pub?gid=0&single=true&output=csv",
-        container: "classificacao-feminino"
-      },
-      {
-        url: "https://docs.google.com/spreadsheets/d/e/2PACX-1vSmGgChlRuHWXjidxaYH9QLW-ICqBLqO3bXcQOXElNaffXDacs7eTb6qjEpMYKzSq-IFJN94i4ajbX-/pub?gid=34368686&single=true&output=csv",
-        container: "resultados-masculino"
-      },
-      {
-        url: "https://docs.google.com/spreadsheets/d/e/2PACX-1vT_BCGGvtUe-5jH0Yls7hhNA7TDFDQfm6zAiz-j87-sc5OEXwLOVaNSQU20tAtefgTBp87ZzhomfJVq/pub?gid=633813531&single=true&output=csv",
-        container: "resultados-feminino"
-      }
-    ];
-
-    async function carregarCSV({ url, container }) {
-      try {
-        const response = await fetch(url);
-        const texto = await response.text();
-        const linhas = texto.trim().split("\n").map(l => l.split(","));
-
-        let html = "<div style='overflow-x:auto'><table><thead><tr>";
-        linhas[0].forEach(coluna => html += `<th>${coluna}</th>`);
-        html += "</tr></thead><tbody>";
-        for (let i = 1; i < linhas.length; i++) {
-          html += "<tr>";
-          linhas[i].forEach(coluna => html += `<td>${coluna}</td>`);
-          html += "</tr>";
-        }
-        html += "</tbody></table></div>";
-        document.getElementById(container).innerHTML = html;
-      } catch (e) {
-        document.getElementById(container).innerHTML = `<p style="color:red;">Erro ao carregar dados.</p>`;
-      }
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Regional de Andebol Santiago Sul</title>
+  <style>
+    :root {
+     --primary: #2e7d32;
+      --background: #f4f6f8;
+      --text: #222;
+      --accent: #ff6f00;
+      --dark-bg: #121212;
+      --dark-text: #f4f4f4;
     }
 
-    async function carregarTudo() {
-      for (const bloco of urls) {
-        await carregarCSV(bloco);
-      }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
     }
 
-    function mostrarAba(id, el) {
-      const secoes = document.querySelectorAll('main section');
-      secoes.forEach(sec => sec.classList.remove('active'));
-      document.getElementById(id).classList.add('active');
-      document.querySelectorAll('nav a').forEach(a => a.classList.remove('active-tab'));
-      el.classList.add('active-tab');
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: var(--background);
+      color: var(--text);
+      transition: background 0.4s, color 0.4s;
     }
 
-    function toggleDarkMode() {
-      document.body.classList.toggle('dark-mode');
+    body.dark-mode {
+      background: var(--dark-bg);
+      color: var(--dark-text);
     }
 
-    window.onload = carregarTudo;
-  </script>
-</body>
-</html>
+    header {
+      background: var(--primary);
+      color: white;
+      padding: 1.5em 1em;
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    header img {
+      max-height: 80px;
+      margin-bottom: 10px;
+    }
+
+    .theme-toggle {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: white;
+      border: none;
+      padding: 0.4em 0.8em;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    nav {
+      background: white;
+      padding: 0.8em 1em;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      display: flex;
+      justify-content: center;
+      gap: 1em;
+      position: sticky;
+      top: 110px;
+      z-index: 999;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--primary);
+      font-weight: bold;
+      padding: 0.4em 0.8em;
+      border-radius: 5px;
+      transition: background 0.3s, transform 0.3s;
+    }
+
+    nav a:hover,
+    nav a.active-tab {
+      background: #e3f2fd;
+      transform: translateY(-2px);
+    }
+
+    main {
+      padding: 2em 1em;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    section {
+      display: none;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    section.active {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      background: white;
+    }
+
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: center;
+      word-break: break-word;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      min-width: 90px;
+    }
+
+    th {
+      background-color: var(--primary);
+      color: white;
+    }
+
+    iframe {
+      width: 100%;
+      height: 650px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      background: white;
+      margin-bottom: 40px;
+    }
+
+    footer {
+      background: var(--primary);
+      color: white;
+      text-align: center;
+      padding: 1em;
+      margin-top: 2em;
+      font-size: 0.9em;
+    }
+
+    .social-share {
+      margin-top: 1em;
+    }
+
+    .social-share a {
+      color: white;
+      margin: 0 0.5em;
+      text-decoration: none;
+      font-weight: bold;
+    }
+  </style>
+</head>
