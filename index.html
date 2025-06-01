@@ -6,7 +6,7 @@
   <title>Regional de Andebol Santiago Sul</title>
   <style>
     :root {
-      --primary: #0d47a1;
+      --primary: #003366;
       --background: #f4f6f8;
       --text: #222;
       --accent: #ff6f00;
@@ -30,6 +30,11 @@
       padding: 1.5em 1em;
       text-align: center;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    header img {
+      max-height: 80px;
+      margin-bottom: 10px;
     }
 
     nav {
@@ -105,11 +110,13 @@
       text-align: center;
       padding: 1em;
       margin-top: 2em;
+      font-size: 0.9em;
     }
   </style>
 </head>
 <body>
   <header>
+    <img src="20250506_1330_Logotipo de Andebol Sul_remix_01jtk01hdsenvbcs12ch68jjd1.png" alt="Logotipo ARASSUL">
     <h1>Regional de Andebol Santiago Sul</h1>
     <p>Temporada 2024/2025</p>
   </header>
@@ -145,7 +152,8 @@
   </main>
 
   <footer>
-    &copy; 2025 ARASSUL - Associação Regional de Andebol de Santiago Sul
+    &copy; 2025 ARASSUL - Associação Regional de Andebol de Santiago Sul<br>
+    📧 Contacto: <a href="mailto:arandebolssul@gmail.com" style="color: #ffcc80; text-decoration: none;">arandebolssul@gmail.com</a>
   </footer>
 
   <script>
@@ -185,7 +193,7 @@
         html += "</tbody></table></div>";
         document.getElementById(container).innerHTML = html;
       } catch (e) {
-        document.getElementById(container).innerHTML = `<p style="color:red;">Erro ao carregar dados.</p>`;
+        document.getElementById(container).innerHTML = `<p style=\"color:red;\">Erro ao carregar dados.</p>`;
       }
     }
 
