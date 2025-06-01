@@ -1,197 +1,184 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Regional de Andebol Santiago Sul</title>
   <style>
     :root {
       --primary: #66bb6a;
-      --background: #f4f6f8;
+      --background: #f9f9f9;
       --text: #222;
       --accent: #ff6f00;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
     body {
-      font-family: Arial, sans-serif;
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
       background: var(--background);
       color: var(--text);
-      line-height: 1.6;
     }
 
     header {
-      background: var(--primary);
-      color: white;
+      background-color: var(--primary);
       padding: 1.5em 1em;
       text-align: center;
+      color: white;
     }
 
     header img {
-      max-height: 80px;
+      height: 60px;
       margin-bottom: 0.5em;
     }
 
     nav {
+      background: white;
+      padding: 1em;
       display: flex;
       justify-content: center;
-      background: white;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      padding: 1em;
+      gap: 1em;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
     }
 
     nav a {
-      color: var(--primary);
       text-decoration: none;
-      margin: 0 1em;
+      color: var(--primary);
       font-weight: bold;
+      padding: 0.5em 1em;
+      border-radius: 6px;
+      transition: background 0.3s;
     }
 
-    nav a:hover {
-      text-decoration: underline;
+    nav a:hover, nav a.active {
+      background: #e8f5e9;
     }
 
     main {
-      max-width: 1000px;
-      margin: 2em auto;
-      padding: 1em;
+      max-width: 1100px;
+      margin: auto;
+      padding: 2em 1em;
     }
 
-    iframe {
+    section {
+      display: none;
+    }
+
+    section.active {
+      display: block;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+
+    table {
       width: 100%;
-      height: 600px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
+      border-collapse: collapse;
+      margin-top: 1em;
       background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    }
+
+    th, td {
+      padding: 12px;
+      text-align: center;
+      border-bottom: 1px solid #eee;
+    }
+
+    th {
+      background: var(--primary);
+      color: white;
+    }
+
+    tr:nth-child(even) {
+      background: #f1f8f5;
     }
 
     footer {
-      background: var(--primary);
+      background-color: var(--primary);
       color: white;
       text-align: center;
       padding: 1em;
-      margin-top: 2em;
+      margin-top: 3em;
     }
 
-    footer a {
-      color: #ffcc80;
-      text-decoration: none;
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
     }
-      html {
-      scroll-behavior: smooth;
-    }
-
-    nav a.active {
-      border-bottom: 2px solid var(--primary);
-    }
-
-@media (max-width: 768px) {
-  header img {
-    max-height: 50px;
-  }
-  nav {
-    flex-direction: column;
-    align-items: center;
-  }
-  nav a {
-    margin: 0.5em 0;
-  }
-  main {
-    padding: 0.5em;
-  }
-  iframe {
-    height: 500px;
-  }
-  h1 {
-    font-size: 1.5em;
-  }
-  h2 {
-    font-size: 1.2em;
-  }
-}
-    .tab {
-      display: none;
-    }
-    .tab.active {
-      display: block;
-    }
-    section.tab {
-      background: white;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-      padding: 1.5em;
-      transition: all 0.3s ease;
-      margin-bottom: 2em;
-    }
-
-    nav a.active {
-      background-color: var(--primary);
-      color: white;
-      padding: 0.4em 0.8em;
-      border-radius: 5px;
-      transition: background-color 0.3s ease;
-    }
-
-    nav a {
-      transition: color 0.3s ease;
-    }
-
-</style>
+  </style>
 </head>
 <body>
   <header>
-    <img src="20250506_1330_Logotipo de Andebol Sul_remix_01jtk01hdsenvbcs12ch68jjd1.png" alt="Logotipo ARASSUL">
+    <img src="20250506_1330_Logotipo de Andebol Sul_remix_01jtk01hdsenvbcs12ch68jjd1.png" alt="Logo ARASSUL">
     <h1>Regional de Andebol Santiago Sul</h1>
     <p>Temporada 2024/2025</p>
   </header>
 
   <nav>
-    <a href="#classificacao" onclick="setActive(this)" class="active">Classificação</a>
-    <a href="#resultados" onclick="setActive(this)">Resultados</a>
-    <a href="#marcadores" onclick="setActive(this)">Melhores Marcadores</a>
+    <a href="#classificacao" onclick="mostrarAba('classificacao', this)" class="active">Classificação</a>
+    <a href="#resultados" onclick="mostrarAba('resultados', this)">Resultados</a>
+    <a href="#marcadores" onclick="mostrarAba('marcadores', this)">Melhores Marcadores</a>
   </nav>
 
   <main>
-    <section id="classificacao" class="tab active">
-      <h2>Classificação - Sénior Masculino</h2>
-      <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSmGgChlRuHWXjidxaYH9QLW-ICqBLqO3bXcQOXElNaffXDacs7eTb6qjEpMYKzSq-IFJN94i4ajbX-/pub?gid=0&single=true&output=html"></iframe>
-      <h2>Classificação - Sénior Feminino</h2>
-      <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vT_BCGGvtUe-5jH0Yls7hhNA7TDFDQfm6zAiz-j87-sc5OEXwLOVaNSQU20tAtefgTBp87ZzhomfJVq/pub?gid=0&single=true&output=html"></iframe>
+    <section id="classificacao" class="active">
+      <h2>Classificação</h2>
+      <div id="classificacao-tabela">Carregando...</div>
     </section>
 
-    <section id="resultados" class="tab">
-      <h2>Resultados - Sénior Masculino</h2>
-      <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSmGgChlRuHWXjidxaYH9QLW-ICqBLqO3bXcQOXElNaffXDacs7eTb6qjEpMYKzSq-IFJN94i4ajbX-/pub?gid=34368686&single=true&output=html"></iframe>
-      <h2>Resultados - Sénior Feminino</h2>
-      <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vT_BCGGvtUe-5jH0Yls7hhNA7TDFDQfm6zAiz-j87-sc5OEXwLOVaNSQU20tAtefgTBp87ZzhomfJVq/pub?gid=633813531&single=true&output=html"></iframe>
+    <section id="resultados">
+      <h2>Resultados</h2>
+      <div id="resultados-tabela">Carregando...</div>
     </section>
 
-    <section id="marcadores" class="tab">
-      <h2>Melhores Marcadores - Sénior Masculino</h2>
-      <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSmGgChlRuHWXjidxaYH9QLW-ICqBLqO3bXcQOXElNaffXDacs7eTb6qjEpMYKzSq-IFJN94i4ajbX-/pub?gid=498053061&single=true&output=html"></iframe>
-      <h2>Melhores Marcadores - Sénior Feminino</h2>
-      <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vT_BCGGvtUe-5jH0Yls7hhNA7TDFDQfm6zAiz-j87-sc5OEXwLOVaNSQU20tAtefgTBp87ZzhomfJVq/pub?gid=1661240807&single=true&output=html"></iframe>
+    <section id="marcadores">
+      <h2>Top 10 Marcadores</h2>
+      <div id="marcadores-tabela">Carregando...</div>
     </section>
   </main>
 
   <footer>
     &copy; 2025 ARASSUL - Associação Regional de Andebol de Santiago Sul<br>
-    📧 Contacto: <a href="mailto:arandebolssul@gmail.com">arandebolssul@gmail.com</a>
+    📧 Contacto: <a href="mailto:arandebolssul@gmail.com" style="color: #ffcc80; text-decoration: none;">arandebolssul@gmail.com</a>
   </footer>
-<script>
-    function setActive(link) {
-      document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
-      link.classList.add('active');
 
-      const id = link.getAttribute('href').replace('#', '');
-      document.querySelectorAll('.tab').forEach(section => section.classList.remove('active'));
-      document.getElementById(id).classList.add('active');
+  <script>
+    const tabelas = {
+      "classificacao-tabela": "https://docs.google.com/spreadsheets/d/e/2PACX-1vSmGgChlRuHWXjidxaYH9QLW-ICqBLqO3bXcQOXElNaffXDacs7eTb6qjEpMYKzSq-IFJN94i4ajbX-/pub?gid=0&single=true&output=csv",
+      "resultados-tabela": "https://docs.google.com/spreadsheets/d/e/2PACX-1vSmGgChlRuHWXjidxaYH9QLW-ICqBLqO3bXcQOXElNaffXDacs7eTb6qjEpMYKzSq-IFJN94i4ajbX-/pub?gid=34368686&single=true&output=csv",
+      "marcadores-tabela": "https://docs.google.com/spreadsheets/d/e/2PACX-1vSmGgChlRuHWXjidxaYH9QLW-ICqBLqO3bXcQOXElNaffXDacs7eTb6qjEpMYKzSq-IFJN94i4ajbX-/pub?gid=498053061&single=true&output=csv"
+    };
+
+    async function carregarTabela(id, url) {
+      try {
+        const response = await fetch(url);
+        const text = await response.text();
+        const linhas = text.trim().split("\n").map(l => l.split(","));
+        let html = "<table><thead><tr>";
+        linhas[0].forEach(c => html += `<th>${c}</th>`);
+        html += "</tr></thead><tbody>";
+        for (let i = 1; i < linhas.length; i++) {
+          html += "<tr>";
+          linhas[i].forEach(c => html += `<td>${c}</td>`);
+          html += "</tr>";
+        }
+        html += "</tbody></table>";
+        document.getElementById(id).innerHTML = html;
+      } catch {
+        document.getElementById(id).innerHTML = "<p style='color:red;'>Erro ao carregar dados.</p>";
+      }
     }
-</script>
+
+    function mostrarAba(id, el) {
+      document.querySelectorAll("nav a").forEach(a => a.classList.remove("active"));
+      el.classList.add("active");
+      document.querySelectorAll("main section").forEach(s => s.classList.remove("active"));
+      document.getElementById(id).classList.add("active");
+    }
+
+    window.onload = () => {
+      for (const id in tabelas) carregarTabela(id, tabelas[id]);
+    }
+  </script>
 </body>
 </html>
