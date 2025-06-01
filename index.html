@@ -114,6 +114,12 @@
     font-size: 1.2em;
   }
 }
+    .tab {
+      display: none;
+    }
+    .tab.active {
+      display: block;
+    }
 </style>
 </head>
 <body>
@@ -130,21 +136,21 @@
   </nav>
 
   <main>
-    <section id="classificacao">
+    <section id="classificacao" class="tab active">
       <h2>Classificação - Sénior Masculino</h2>
       <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSmGgChlRuHWXjidxaYH9QLW-ICqBLqO3bXcQOXElNaffXDacs7eTb6qjEpMYKzSq-IFJN94i4ajbX-/pub?gid=0&single=true&output=html"></iframe>
       <h2>Classificação - Sénior Feminino</h2>
       <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vT_BCGGvtUe-5jH0Yls7hhNA7TDFDQfm6zAiz-j87-sc5OEXwLOVaNSQU20tAtefgTBp87ZzhomfJVq/pub?gid=0&single=true&output=html"></iframe>
     </section>
 
-    <section id="resultados">
+    <section id="resultados" class="tab">
       <h2>Resultados - Sénior Masculino</h2>
       <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSmGgChlRuHWXjidxaYH9QLW-ICqBLqO3bXcQOXElNaffXDacs7eTb6qjEpMYKzSq-IFJN94i4ajbX-/pub?gid=34368686&single=true&output=html"></iframe>
       <h2>Resultados - Sénior Feminino</h2>
       <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vT_BCGGvtUe-5jH0Yls7hhNA7TDFDQfm6zAiz-j87-sc5OEXwLOVaNSQU20tAtefgTBp87ZzhomfJVq/pub?gid=633813531&single=true&output=html"></iframe>
     </section>
 
-    <section id="marcadores">
+    <section id="marcadores" class="tab">
       <h2>Melhores Marcadores - Sénior Masculino</h2>
       <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSmGgChlRuHWXjidxaYH9QLW-ICqBLqO3bXcQOXElNaffXDacs7eTb6qjEpMYKzSq-IFJN94i4ajbX-/pub?gid=498053061&single=true&output=html"></iframe>
       <h2>Melhores Marcadores - Sénior Feminino</h2>
@@ -160,6 +166,10 @@
     function setActive(link) {
       document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
       link.classList.add('active');
+
+      const id = link.getAttribute('href').replace('#', '');
+      document.querySelectorAll('.tab').forEach(section => section.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
     }
 </script>
 </body>
