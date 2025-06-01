@@ -5,127 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Regional de Andebol Santiago Sul</title>
   <style>
-    body { font-family: sans-serif; max-width: 960px; margin: auto; padding: 20px; background: #f9f9f9; }
-    h1, h2 { text-align: center; color: #003366; }
-    table { width: 100%; border-collapse: collapse; margin-top: 20px; background: white; }
-    th, td {
-      border: 1px solid #ccc;
-      padding: 8px;
-      text-align: center;
-      word-break: break-word;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      min-width: 90px;
-    }
-    th { background-color: #0055a5; color: white; }
-    .section { margin-bottom: 40px; }
-    header img { display: block; margin: auto; height: 100px; }
-
-    @media (max-width: 768px) {
-      body { padding: 10px; }
-      table { font-size: 13px; }
-      th, td { padding: 5px; min-width: 80px; }
-      header img { height: 60px; }
-      h1 { font-size: 20px; }
-      h2 { font-size: 18px; }
-    }
-
-    @media (max-width: 480px) {
-      table { font-size: 12px; }
-      th, td { padding: 4px; min-width: 70px; }
-      header img { height: 50px; }
-      h1 { font-size: 18px; }
-      h2 { font-size: 16px; }
-    }
-  </style>
-</head>
-<body>
-
-  <header>
-    <img src="20250506_1330_Logotipo de Andebol Sul_remix_01jtk01hdsenvbcs12ch68jjd1.png" alt="Logo ARASSUL">
-    <h1>Regional de Andebol Santiago Sul</h1>
-  </header>
-
-  <div class="section">
-    <h2>Classificação - Sénior Masculino</h2>
-    <div id="classificacao-masculino">Carregando...</div>
-  </div>
-
-  <div class="section">
-    <h2>Classificação - Sénior Feminino</h2>
-    <div id="classificacao-feminino">Carregando...</div>
-  </div>
-
-  <div class="section">
-    <h2>Resultados - Sénior Masculino</h2>
-    <div id="resultados-masculino">Carregando...</div>
-  </div>
-
-  <div class="section">
-    <h2>Resultados - Sénior Feminino</h2>
-    <div id="resultados-feminino">Carregando...</div>
-  </div>
-
-  <script>
-    const urls = [
-      {
-        url: "https://docs.google.com/spreadsheets/d/e/2PACX-1vSmGgChlRuHWXjidxaYH9QLW-ICqBLqO3bXcQOXElNaffXDacs7eTb6qjEpMYKzSq-IFJN94i4ajbX-/pub?gid=0&single=true&output=csv",
-        container: "classificacao-masculino"
-      },
-      {
-        url: "https://docs.google.com/spreadsheets/d/e/2PACX-1vT_BCGGvtUe-5jH0Yls7hhNA7TDFDQfm6zAiz-j87-sc5OEXwLOVaNSQU20tAtefgTBp87ZzhomfJVq/pub?gid=0&single=true&output=csv",
-        container: "classificacao-feminino"
-      },
-      {
-        url: "https://docs.google.com/spreadsheets/d/e/2PACX-1vSmGgChlRuHWXjidxaYH9QLW-ICqBLqO3bXcQOXElNaffXDacs7eTb6qjEpMYKzSq-IFJN94i4ajbX-/pub?gid=34368686&single=true&output=csv",
-        container: "resultados-masculino"
-      },
-      {
-        url: "https://docs.google.com/spreadsheets/d/e/2PACX-1vT_BCGGvtUe-5jH0Yls7hhNA7TDFDQfm6zAiz-j87-sc5OEXwLOVaNSQU20tAtefgTBp87ZzhomfJVq/pub?gid=633813531&single=true&output=csv",
-        container: "resultados-feminino"
-      }
-    ];
-
-    async function carregarCSV({ url, container }) {
-      try {
-        const response = await fetch(url);
-        const texto = await response.text();
-        const linhas = texto.trim().split("\n").map(l => l.split(","));
-
-        let html = "<div style='overflow-x:auto'><table><thead><tr>";
-        linhas[0].forEach(coluna => html += `<th>${coluna}</th>`);
-        html += "</tr></thead><tbody>";
-        for (let i = 1; i < linhas.length; i++) {
-          html += "<tr>";
-          linhas[i].forEach(coluna => html += `<td>${coluna}</td>`);
-          html += "</tr>";
-        }
-        html += "</tbody></table></div>";
-        document.getElementById(container).innerHTML = html;
-      } catch (e) {
-        document.getElementById(container).innerHTML = `<p style="color:red;">Erro ao carregar dados.</p>`;
-      }
-    }
-
-    async function carregarTudo() {
-      for (const bloco of urls) {
-        await carregarCSV(bloco);
-      }
-    }
-
-    window.onload = carregarTudo;
-  </script>
-
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="pt">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Melhores Marcadoras - Andebol Santiago Sul</title>
-  <style>
     :root {
       --primary: #0d47a1;
       --background: #f4f6f8;
@@ -181,6 +60,37 @@
       margin: auto;
     }
 
+    section {
+      display: none;
+    }
+
+    section.active {
+      display: block;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      background: white;
+    }
+
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: center;
+      word-break: break-word;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      min-width: 90px;
+    }
+
+    th {
+      background-color: var(--primary);
+      color: white;
+    }
+
     iframe {
       width: 100%;
       height: 650px;
@@ -200,26 +110,97 @@
 </head>
 <body>
   <header>
-    <h1>Melhores Marcadoras</h1>
-    <p>Campeonato Regional de Andebol - Santiago Sul</p>
+    <h1>Regional de Andebol Santiago Sul</h1>
+    <p>Temporada 2024/2025</p>
   </header>
 
   <nav>
-    <a href="index.html">Início</a>
-    <a href="classificacao.html">Classificação</a>
-    <a href="resultados.html">Resultados</a>
-    <a href="melhores-marcadoras.html" style="background:#e3f2fd;">Marcadoras</a>
+    <a href="#" onclick="mostrarAba('classificacao')">Classificação</a>
+    <a href="#" onclick="mostrarAba('resultados')">Resultados</a>
+    <a href="#" onclick="mostrarAba('marcadoras')">Melhores Marcadoras</a>
   </nav>
 
   <main>
-    <iframe 
-      src="https://docs.google.com/spreadsheets/d/e/2PACX-1vT_BCGGvtUe-5jH0Yls7hhNA7TDFDQfm6zAiz-j87-sc5OEXwLOVaNSQU20tAtefgTBp87ZzhomfJVq/pub?gid=1661240807&single=true&output=html"
-      allowfullscreen>
-    </iframe>
+    <section id="classificacao" class="active">
+      <h2>Classificação - Sénior Masculino</h2>
+      <div id="classificacao-masculino">Carregando...</div>
+      <h2>Classificação - Sénior Feminino</h2>
+      <div id="classificacao-feminino">Carregando...</div>
+    </section>
+
+    <section id="resultados">
+      <h2>Resultados - Sénior Masculino</h2>
+      <div id="resultados-masculino">Carregando...</div>
+      <h2>Resultados - Sénior Feminino</h2>
+      <div id="resultados-feminino">Carregando...</div>
+    </section>
+
+    <section id="marcadoras">
+      <h2>Melhores Marcadoras</h2>
+      <iframe 
+        src="https://docs.google.com/spreadsheets/d/e/2PACX-1vT_BCGGvtUe-5jH0Yls7hhNA7TDFDQfm6zAiz-j87-sc5OEXwLOVaNSQU20tAtefgTBp87ZzhomfJVq/pub?gid=1661240807&single=true&output=html"
+        allowfullscreen>
+      </iframe>
+    </section>
   </main>
 
   <footer>
     &copy; 2025 ARASSUL - Associação Regional de Andebol de Santiago Sul
   </footer>
+
+  <script>
+    const urls = [
+      {
+        url: "https://docs.google.com/spreadsheets/d/e/2PACX-1vSmGgChlRuHWXjidxaYH9QLW-ICqBLqO3bXcQOXElNaffXDacs7eTb6qjEpMYKzSq-IFJN94i4ajbX-/pub?gid=0&single=true&output=csv",
+        container: "classificacao-masculino"
+      },
+      {
+        url: "https://docs.google.com/spreadsheets/d/e/2PACX-1vT_BCGGvtUe-5jH0Yls7hhNA7TDFDQfm6zAiz-j87-sc5OEXwLOVaNSQU20tAtefgTBp87ZzhomfJVq/pub?gid=0&single=true&output=csv",
+        container: "classificacao-feminino"
+      },
+      {
+        url: "https://docs.google.com/spreadsheets/d/e/2PACX-1vSmGgChlRuHWXjidxaYH9QLW-ICqBLqO3bXcQOXElNaffXDacs7eTb6qjEpMYKzSq-IFJN94i4ajbX-/pub?gid=34368686&single=true&output=csv",
+        container: "resultados-masculino"
+      },
+      {
+        url: "https://docs.google.com/spreadsheets/d/e/2PACX-1vT_BCGGvtUe-5jH0Yls7hhNA7TDFDQfm6zAiz-j87-sc5OEXwLOVaNSQU20tAtefgTBp87ZzhomfJVq/pub?gid=633813531&single=true&output=csv",
+        container: "resultados-feminino"
+      }
+    ];
+
+    async function carregarCSV({ url, container }) {
+      try {
+        const response = await fetch(url);
+        const texto = await response.text();
+        const linhas = texto.trim().split("\n").map(l => l.split(","));
+
+        let html = "<div style='overflow-x:auto'><table><thead><tr>";
+        linhas[0].forEach(coluna => html += `<th>${coluna}</th>`);
+        html += "</tr></thead><tbody>";
+        for (let i = 1; i < linhas.length; i++) {
+          html += "<tr>";
+          linhas[i].forEach(coluna => html += `<td>${coluna}</td>`);
+          html += "</tr>";
+        }
+        html += "</tbody></table></div>";
+        document.getElementById(container).innerHTML = html;
+      } catch (e) {
+        document.getElementById(container).innerHTML = `<p style="color:red;">Erro ao carregar dados.</p>`;
+      }
+    }
+
+    async function carregarTudo() {
+      for (const bloco of urls) {
+        await carregarCSV(bloco);
+      }
+    }
+
+    function mostrarAba(id) {
+      document.querySelectorAll('main section').forEach(sec => sec.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    }
+
+    window.onload = carregarTudo;
+  </script>
 </body>
 </html>
