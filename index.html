@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Regional de Andebol Santiago Sul</title>
   <style>
     :root {
@@ -10,6 +10,7 @@
       --background: #f9f9f9;
       --text: #222;
       --accent: #ff6f00;
+      --highlight: #00e676;
     }
 
     body {
@@ -68,6 +69,25 @@
       animation: fadeIn 0.3s ease-in-out;
     }
 
+    h2 {
+      text-align: center;
+      margin-top: 2em;
+    }
+
+    .csv-download {
+      text-align: center;
+      margin-bottom: 1em;
+    }
+
+    .csv-download a {
+      background: var(--primary);
+      color: white;
+      padding: 0.4em 1em;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+    }
+
     table {
       width: 100%;
       border-collapse: collapse;
@@ -76,6 +96,7 @@
       border-radius: 8px;
       overflow: hidden;
       box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+      animation: fadeIn 0.5s ease-in-out;
     }
 
     th, td {
@@ -90,7 +111,29 @@
     }
 
     tr:nth-child(even) {
-      background: #f1f8f5;
+      background: #e8f5e9;
+    }
+
+    td.campeao {
+      font-weight: bold;
+      color: #d4af37;
+      border: 2px solid var(--highlight);
+      border-radius: 6px;
+      animation: highlight 2s infinite alternate;
+    }
+
+    td.campeao::before {
+      content: "\1F3C6\0020";
+    }
+
+    @keyframes highlight {
+      from { box-shadow: 0 0 5px var(--highlight); }
+      to { box-shadow: 0 0 20px var(--highlight); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     footer {
@@ -101,9 +144,8 @@
       margin-top: 3em;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
+    @media (max-width: 768px) {
+      th, td { font-size: 14px; padding: 8px; }
     }
   </style>
 </head>
@@ -117,8 +159,8 @@
   <nav>
     <a href="#classificacao" onclick="mostrarAba('classificacao', this)" class="active">Classificação</a>
     <a href="#resultados" onclick="mostrarAba('resultados', this)">Resultados</a>
-    <a href="#marcadores" onclick="mostrarAba('marcadores', this)">Melhores Marcadores</a>
-    <a href="playoffs.html">Playoffs</a>
+    <a href="#marcadores" onclick="mostrarAba('marcadores', this)">Marcadores</a>
+    <a href="#playoffs" onclick="mostrarAba('playoffs', this)">Playoffs</a>
   </nav>
 
   <main>
@@ -142,6 +184,20 @@
       <h2>Melhores Marcadores - Sénior Feminino</h2>
       <div id="marcadores-feminino">Carregando...</div>
     </section>
+
+    <section id="playoffs">
+      <h2>Playoffs - Sénior Masculino</h2>
+      <div class="csv-download">
+        <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vSmGgChlRuHWXjidxaYH9QLW-ICqBLqO3bXcQOXElNaffXDacs7eTb6qjEpMYKzSq-IFJN94i4ajbX-/pub?gid=582525547&single=true&output=csv" target="_blank">⬇ CSV</a>
+      </div>
+      <div id="playoffs-masculino">Carregando...</div>
+
+      <h2>Playoffs - Sénior Feminino</h2>
+      <div class="csv-download">
+        <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vT_BCGGvtUe-5jH0Yls7hhNA7TDFDQfm6zAiz-j87-sc5OEXwLOVaNSQU20tAtefgTBp87ZzhomfJVq/pub?gid=864308096&single=true&output=csv" target="_blank">⬇ CSV</a>
+      </div>
+      <div id="playoffs-feminino">Carregando...</div>
+    </section>
   </main>
 
   <footer>
@@ -156,7 +212,9 @@
       "resultados-tabela": "https://docs.google.com/spreadsheets/d/e/2PACX-1vSmGgChlRuHWXjidxaYH9QLW-ICqBLqO3bXcQOXElNaffXDacs7eTb6qjEpMYKzSq-IFJN94i4ajbX-/pub?gid=34368686&single=true&output=csv",
       "resultados-feminino": "https://docs.google.com/spreadsheets/d/e/2PACX-1vT_BCGGvtUe-5jH0Yls7hhNA7TDFDQfm6zAiz-j87-sc5OEXwLOVaNSQU20tAtefgTBp87ZzhomfJVq/pub?gid=633813531&single=true&output=csv",
       "marcadores-tabela": "https://docs.google.com/spreadsheets/d/e/2PACX-1vSmGgChlRuHWXjidxaYH9QLW-ICqBLqO3bXcQOXElNaffXDacs7eTb6qjEpMYKzSq-IFJN94i4ajbX-/pub?gid=498053061&single=true&output=csv",
-      "marcadores-feminino": "https://docs.google.com/spreadsheets/d/e/2PACX-1vT_BCGGvtUe-5jH0Yls7hhNA7TDFDQfm6zAiz-j87-sc5OEXwLOVaNSQU20tAtefgTBp87ZzhomfJVq/pub?gid=1661240807&single=true&output=csv"
+      "marcadores-feminino": "https://docs.google.com/spreadsheets/d/e/2PACX-1vT_BCGGvtUe-5jH0Yls7hhNA7TDFDQfm6zAiz-j87-sc5OEXwLOVaNSQU20tAtefgTBp87ZzhomfJVq/pub?gid=1661240807&single=true&output=csv",
+      "playoffs-masculino": "https://docs.google.com/spreadsheets/d/e/2PACX-1vSmGgChlRuHWXjidxaYH9QLW-ICqBLqO3bXcQOXElNaffXDacs7eTb6qjEpMYKzSq-IFJN94i4ajbX-/pub?gid=582525547&single=true&output=csv",
+      "playoffs-feminino": "https://docs.google.com/spreadsheets/d/e/2PACX-1vT_BCGGvtUe-5jH0Yls7hhNA7TDFDQfm6zAiz-j87-sc5OEXwLOVaNSQU20tAtefgTBp87ZzhomfJVq/pub?gid=864308096&single=true&output=csv"
     };
 
     async function carregarTabela(id, url) {
@@ -169,7 +227,11 @@
         html += "</tr></thead><tbody>";
         for (let i = 1; i < linhas.length; i++) {
           html += "<tr>";
-          linhas[i].forEach(c => html += `<td>${c}</td>`);
+          linhas[i].forEach(c => {
+            const ehCampeao = /campe(ã|a)o?/i.test(c.normalize("NFD").replace(/[̀-ͯ]/g, ""));
+            const celula = ehCampeao ? `<td class='campeao'>${c}</td>` : `<td>${c}</td>`;
+            html += celula;
+          });
           html += "</tr>";
         }
         html += "</tbody></table>";
