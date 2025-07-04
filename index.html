@@ -161,6 +161,56 @@
   </style>
 </head>
 <body>
-<!-- O restante conteúdo permanece igual -->
+  <header>
+    <h1>Regional de Andebol Santiago Sul</h1>
+  </header>
+
+  <nav>
+    <a href="#classificacao" class="tab-link">Classificação</a>
+    <a href="#resultados" class="tab-link">Resultados</a>
+    <a href="#playoffs" class="tab-link">Playoffs</a>
+    <a href="#marcadores" class="tab-link">Melhores Marcadores</a>
+  </nav>
+
+  <main>
+    <section id="classificacao" class="tab-content active">
+      <h2>Classificação</h2>
+      <!-- conteúdo aqui -->
+    </section>
+    <section id="resultados" class="tab-content">
+      <h2>Resultados</h2>
+      <!-- conteúdo aqui -->
+    </section>
+    <section id="playoffs" class="tab-content">
+      <h2>Playoffs</h2>
+      <!-- conteúdo aqui -->
+    </section>
+    <section id="marcadores" class="tab-content">
+      <h2>Melhores Marcadores</h2>
+      <!-- conteúdo aqui -->
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2025 ARASSUL - Associação Regional de Andebol de Santiago Sul
+  </footer>
+
+  <script>
+    const links = document.querySelectorAll('.tab-link');
+    const tabs = document.querySelectorAll('.tab-content');
+
+    links.forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = this.getAttribute('href').substring(1);
+
+        links.forEach(l => l.classList.remove('active'));
+        tabs.forEach(t => t.classList.remove('active'));
+
+        this.classList.add('active');
+        document.getElementById(target).classList.add('active');
+      });
+    });
+  </script>
 </body>
 </html>
