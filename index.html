@@ -3,97 +3,80 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Regional de Andebol Santiago Sul</title>
+  <title>Playoffs - ARASSUL</title>
   <style>
     :root {
       --primary: #66bb6a;
-      --background: #f4f4f4;
-      --text: #333;
+      --background: #f9f9f9;
+      --text: #222;
       --highlight: #00e676;
     }
 
     body {
-      font-family: Arial, sans-serif;
       margin: 0;
+      font-family: 'Segoe UI', sans-serif;
       background: var(--background);
       color: var(--text);
     }
 
-    header, footer {
-      background: var(--primary);
-      color: white;
+    header {
+      background-color: var(--primary);
+      padding: 1.5em 1em;
       text-align: center;
-      padding: 1em;
+      color: white;
     }
 
-    nav {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1em;
-      background: white;
-      padding: 1em;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    }
-
-    nav a {
-      text-decoration: none;
-      color: var(--primary);
-      font-weight: bold;
-      padding: 0.5em 1em;
-      border-radius: 4px;
-    }
-
-    nav a.active, nav a:hover {
-      background: #e8f5e9;
+    header img {
+      height: 60px;
+      margin-bottom: 0.5em;
     }
 
     main {
-      max-width: 960px;
+      max-width: 1000px;
       margin: auto;
+      padding: 2em 1em;
+    }
+
+    h2 {
+      text-align: center;
+      margin-top: 2em;
+    }
+
+    .playoff-card {
+      background: white;
+      border-radius: 12px;
       padding: 1em;
-    }
-
-    section {
-      display: none;
-    }
-
-    section.active {
-      display: block;
+      margin: 1em 0;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       animation: fadeIn 0.3s ease-in-out;
     }
 
-    .tabela-container {
-      overflow-x: auto;
+    .playoff-card h3 {
+      margin: 0.5em 0;
+      color: var(--primary);
     }
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 1em;
+    .playoff-card p {
+      margin: 0.2em 0;
+      font-size: 1.05em;
     }
 
-    th, td {
-      padding: 10px;
-      border: 1px solid #ccc;
-      text-align: center;
+    .campeao-badge {
+      font-weight: bold;
+      color: #d4af37;
+      border: 2px solid var(--highlight);
+      border-radius: 8px;
+      padding: 0.3em 0.8em;
+      margin-top: 0.5em;
+      background: #fffbea;
+      box-shadow: 0 0 8px #00e67655;
     }
 
-    th {
-      background: var(--primary);
-      color: white;
-    }
-
-    tr:nth-child(2) td:first-child::before {
-      content: "🥇 ";
-    }
-
-    tr:nth-child(3) td:first-child::before {
-      content: "🥈 ";
-    }
-
-    tr:nth-child(4) td:first-child::before {
-      content: "🥉 ";
+    .campeao-badge::before {
+      content: "\1F3C6\0020";
     }
 
     @keyframes fadeIn {
@@ -101,108 +84,67 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    @media (max-width: 768px) {
-      th, td {
-        font-size: 14px;
-        padding: 6px;
-      }
+    footer {
+      background-color: var(--primary);
+      color: white;
+      text-align: center;
+      padding: 1em;
+      margin-top: 3em;
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>Regional de Andebol Santiago Sul</h1>
-    <p>Época 2024/2025</p>
+    <img src="20250506_1330_Logotipo de Andebol Sul_remix_01jtk01hdsenvbcs12ch68jjd1.png" alt="Logo ARASSUL">
+    <h1>Playoffs - Campeonato Regional</h1>
+    <p>Temporada 2024/2025</p>
   </header>
 
-  <nav>
-    <a href="#classificacao" onclick="mostrarAba('classificacao', this)" class="active">Classificação</a>
-    <a href="#resultados" onclick="mostrarAba('resultados', this)">Resultados</a>
-    <a href="#marcadores" onclick="mostrarAba('marcadores', this)">Marcadores</a>
-    <a href="#playoffs" onclick="mostrarAba('playoffs', this)">Playoffs</a>
-  </nav>
-
   <main>
-    <section id="classificacao" class="active">
-      <h2>Classificação</h2>
-      <div id="classificacao-tabela" class="tabela-container">A carregar...</div>
-      <h2>Classificação Feminino</h2>
-      <div id="classificacao-feminino" class="tabela-container">A carregar...</div>
-    </section>
+    <h2>Playoffs - Sénior Masculino</h2>
+    <div class="playoff-card">
+      <h3>Meias-finais: ASA Stars vs Paiol</h3>
+      <p>Jogo 1: ASA Stars 28 x 25 Paiol</p>
+      <p>Jogo 2: ASA Stars 26 x 24 Paiol</p>
+      <p>Jogo 3: ASA Stars 29 x 27 Paiol</p>
+    </div>
 
-    <section id="resultados">
-      <h2>Resultados</h2>
-      <div id="resultados-tabela" class="tabela-container">A carregar...</div>
-      <h2>Resultados Feminino</h2>
-      <div id="resultados-feminino" class="tabela-container">A carregar...</div>
-    </section>
+    <div class="playoff-card">
+      <h3>Meias-finais: US vs Garridos</h3>
+      <p>Jogo 1: US 27 x 22 Garridos</p>
+      <p>Jogo 2: US 25 x 26 Garridos</p>
+      <p>Jogo 3: US 30 x 28 Garridos</p>
+    </div>
 
-    <section id="marcadores">
-      <h2>Marcadores</h2>
-      <div id="marcadores-tabela" class="tabela-container">A carregar...</div>
-      <h2>Marcadores Feminino</h2>
-      <div id="marcadores-feminino" class="tabela-container">A carregar...</div>
-    </section>
+    <div class="playoff-card">
+      <h3>Final Masculina: ASA Stars vs US</h3>
+      <p>Jogo 1: ASA Stars 28 x 25 US</p>
+      <p>Jogo 2: ASA Stars 26 x 27 US</p>
+      <p>Jogo 3: ASA Stars 30 x 29 US</p>
+      <p>Jogo 4: ASA Stars 24 x 28 US</p>
+      <p>Jogo 5: ASA Stars 29 x 26 US</p>
+      <div class="campeao-badge">ASA Stars - Campeão</div>
+    </div>
 
-    <section id="playoffs">
-      <h2>Playoffs</h2>
-      <div id="playoffs-masculino" class="tabela-container">A carregar...</div>
-      <h2>Playoffs Feminino</h2>
-      <div id="playoffs-feminino" class="tabela-container">A carregar...</div>
-    </section>
+    <h2>Playoffs - Sénior Feminino</h2>
+    <div class="playoff-card">
+      <h3>Meias-finais: Seven Stars vs Info</h3>
+      <p>Jogo 1: Seven Stars 25 x 23 Info</p>
+      <p>Jogo 2: Seven Stars 24 x 22 Info</p>
+      <p>Jogo 3: Seven Stars 27 x 24 Info</p>
+    </div>
+
+    <div class="playoff-card">
+      <h3>Final Feminina: ABC vs Seven Stars</h3>
+      <p>Jogo 1: ABC 27 x 24 Seven Stars</p>
+      <p>Jogo 2: ABC 29 x 25 Seven Stars</p>
+      <p>Jogo 3: ABC 28 x 27 Seven Stars</p>
+      <div class="campeao-badge">ABC - Campeão</div>
+    </div>
   </main>
 
   <footer>
-    &copy; 2025 ARASSUL – Todos os direitos reservados
+    &copy; 2025 ARASSUL - Associação Regional de Andebol de Santiago Sul
   </footer>
-
-  <script>
-    const tabelas = {
-      "classificacao-tabela": "https://docs.google.com/spreadsheets/d/e/2PACX-1vSmGgChlRuHWXjidxaYH9QLW-ICqBLqO3bXcQOXElNaffXDacs7eTb6qjEpMYKzSq-IFJN94i4ajbX-/pub?gid=0&single=true&output=csv",
-      "classificacao-feminino": "https://docs.google.com/spreadsheets/d/e/2PACX-1vT_BCGGvtUe-5jH0Yls7hhNA7TDFDQfm6zAiz-j87-sc5OEXwLOVaNSQU20tAtefgTBp87ZzhomfJVq/pub?gid=0&single=true&output=csv",
-      "resultados-tabela": "https://docs.google.com/spreadsheets/d/e/2PACX-1vSmGgChlRuHWXjidxaYH9QLW-ICqBLqO3bXcQOXElNaffXDacs7eTb6qjEpMYKzSq-IFJN94i4ajbX-/pub?gid=34368686&single=true&output=csv",
-      "resultados-feminino": "https://docs.google.com/spreadsheets/d/e/2PACX-1vT_BCGGvtUe-5jH0Yls7hhNA7TDFDQfm6zAiz-j87-sc5OEXwLOVaNSQU20tAtefgTBp87ZzhomfJVq/pub?gid=633813531&single=true&output=csv",
-      "marcadores-tabela": "https://docs.google.com/spreadsheets/d/e/2PACX-1vSmGgChlRuHWXjidxaYH9QLW-ICqBLqO3bXcQOXElNaffXDacs7eTb6qjEpMYKzSq-IFJN94i4ajbX-/pub?gid=498053061&single=true&output=csv",
-      "marcadores-feminino": "https://docs.google.com/spreadsheets/d/e/2PACX-1vT_BCGGvtUe-5jH0Yls7hhNA7TDFDQfm6zAiz-j87-sc5OEXwLOVaNSQU20tAtefgTBp87ZzhomfJVq/pub?gid=1661240807&single=true&output=csv",
-      "playoffs-masculino": "https://docs.google.com/spreadsheets/d/e/2PACX-1vSmGgChlRuHWXjidxaYH9QLW-ICqBLqO3bXcQOXElNaffXDacs7eTb6qjEpMYKzSq-IFJN94i4ajbX-/pub?gid=582525547&single=true&output=csv",
-      "playoffs-feminino": "https://docs.google.com/spreadsheets/d/e/2PACX-1vT_BCGGvtUe-5jH0Yls7hhNA7TDFDQfm6zAiz-j87-sc5OEXwLOVaNSQU20tAtefgTBp87ZzhomfJVq/pub?gid=864308096&single=true&output=csv"
-    };
-
-    async function carregarTabela(id, url) {
-      try {
-        const response = await fetch(url);
-        const text = await response.text();
-        const linhas = text.trim().split("\n").map(l => l.split(","));
-        let html = "<table><thead><tr>";
-        linhas[0].forEach(c => html += `<th>${c}</th>`);
-        html += "</tr></thead><tbody>";
-        for (let i = 1; i < linhas.length; i++) {
-          html += "<tr>";
-          linhas[i].forEach(c => html += `<td>${c}</td>`);
-          html += "</tr>";
-        }
-        html += "</tbody></table>";
-        document.getElementById(id).innerHTML = html;
-      } catch (err) {
-        document.getElementById(id).innerHTML = "<p style='color:red;'>Erro ao carregar dados.</p>";
-      }
-    }
-
-    function mostrarAba(id, el) {
-      document.querySelectorAll("nav a").forEach(a => a.classList.remove("active"));
-      el.classList.add("active");
-      document.querySelectorAll("main section").forEach(s => s.classList.remove("active"));
-      document.getElementById(id).classList.add("active");
-      localStorage.setItem("abaAtual", id);
-    }
-
-    window.onload = () => {
-      const hash = location.hash?.substring(1);
-      const abaSalva = hash || localStorage.getItem("abaAtual") || "classificacao";
-      const abaEl = document.querySelector(`nav a[href="#${abaSalva}"]`);
-      if (abaEl) mostrarAba(abaSalva, abaEl);
-      for (const id in tabelas) carregarTabela(id, tabelas[id]);
-    }
-  </script>
 </body>
 </html>
