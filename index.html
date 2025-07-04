@@ -10,7 +10,6 @@
       --background: #f9f9f9;
       --text: #333;
       --accent: #ff9800;
-      --champion-highlight: #fffde7;
       --glow: 0 0 8px #ff9800, 0 0 12px #ff9800, 0 0 16px #ff9800;
     }
 
@@ -23,14 +22,8 @@
     }
 
     @keyframes pageFade {
-      from {
-        opacity: 0;
-        transform: scale(0.98);
-      }
-      to {
-        opacity: 1;
-        transform: scale(1);
-      }
+      from { opacity: 0; transform: scale(0.98); }
+      to { opacity: 1; transform: scale(1); }
     }
 
     header, footer {
@@ -61,7 +54,7 @@
     }
 
     nav a.active, nav a:hover {
-      background: var(--champion-highlight);
+      background: #f0f0f0;
       border: 1px solid var(--primary);
     }
 
@@ -112,13 +105,10 @@
     }
 
     tr.champion td:first-child::before {
-      content: "\1F3C6 Campeão - ";
-      font-weight: bold;
-      color: var(--accent);
+      content: "";
     }
 
     tr.champion {
-      background-color: var(--champion-highlight);
       font-weight: bold;
       border: 2px solid var(--accent);
       box-shadow: var(--glow);
