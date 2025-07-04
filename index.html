@@ -6,14 +6,15 @@
   <title>Regional de Andebol Santiago Sul</title>
   <style>
     :root {
-      --primary: #66bb6a;
-      --background: #f4f4f4;
+      --primary: #2e7d32;
+      --background: #f9f9f9;
       --text: #333;
-      --highlight: #00e676;
+      --accent: #ff9800;
+      --champion-highlight: #fffde7;
     }
 
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', sans-serif;
       margin: 0;
       background: var(--background);
       color: var(--text);
@@ -23,35 +24,38 @@
       background: var(--primary);
       color: white;
       text-align: center;
-      padding: 1em;
+      padding: 1.5em 1em;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     }
 
     nav {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1em;
       background: white;
       padding: 1em;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      display: flex;
+      justify-content: center;
+      gap: 1em;
+      flex-wrap: wrap;
+      border-bottom: 1px solid #ddd;
     }
 
     nav a {
       text-decoration: none;
       color: var(--primary);
       font-weight: bold;
-      padding: 0.5em 1em;
-      border-radius: 4px;
+      padding: 0.6em 1.2em;
+      border-radius: 5px;
+      transition: background 0.3s;
     }
 
     nav a.active, nav a:hover {
-      background: #e8f5e9;
+      background: var(--champion-highlight);
+      border: 1px solid var(--primary);
     }
 
     main {
       max-width: 960px;
       margin: auto;
-      padding: 1em;
+      padding: 2em 1em;
     }
 
     section {
@@ -63,18 +67,27 @@
       animation: fadeIn 0.3s ease-in-out;
     }
 
+    h2 {
+      border-left: 6px solid var(--primary);
+      padding-left: 10px;
+      margin-top: 2em;
+    }
+
     .tabela-container {
       overflow-x: auto;
+      background: white;
+      padding: 1em;
+      border-radius: 10px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.05);
     }
 
     table {
       width: 100%;
       border-collapse: collapse;
-      margin-top: 1em;
     }
 
     th, td {
-      padding: 10px;
+      padding: 12px 8px;
       border: 1px solid #ccc;
       text-align: center;
     }
@@ -84,6 +97,17 @@
       color: white;
     }
 
+    tr.champion td:first-child::after {
+      content: " \1F3C6"; /* taça */
+      margin-left: 6px;
+    }
+
+    tr.champion {
+      background-color: var(--champion-highlight);
+      font-weight: bold;
+      border: 2px solid var(--accent);
+    }
+
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(10px); }
       to { opacity: 1; transform: translateY(0); }
@@ -91,7 +115,7 @@
 
     @media (max-width: 768px) {
       th, td {
-        font-size: 14px;
+        font-size: 13px;
         padding: 6px;
       }
     }
@@ -146,14 +170,14 @@
 
   <script>
     const tabelas = {
-      "classificacao-tabela": "https://docs.google.com/spreadsheets/d/e/2PACX-1vSmGgChlRuHWXjidxaYH9QLW-ICqBLqO3bXcQOXElNaffXDacs7eTb6qjEpMYKzSq-IFJN94i4ajbX-/pub?gid=0&single=true&output=csv",
-      "classificacao-feminino": "https://docs.google.com/spreadsheets/d/e/2PACX-1vT_BCGGvtUe-5jH0Yls7hhNA7TDFDQfm6zAiz-j87-sc5OEXwLOVaNSQU20tAtefgTBp87ZzhomfJVq/pub?gid=0&single=true&output=csv",
-      "resultados-tabela": "https://docs.google.com/spreadsheets/d/e/2PACX-1vSmGgChlRuHWXjidxaYH9QLW-ICqBLqO3bXcQOXElNaffXDacs7eTb6qjEpMYKzSq-IFJN94i4ajbX-/pub?gid=34368686&single=true&output=csv",
-      "resultados-feminino": "https://docs.google.com/spreadsheets/d/e/2PACX-1vT_BCGGvtUe-5jH0Yls7hhNA7TDFDQfm6zAiz-j87-sc5OEXwLOVaNSQU20tAtefgTBp87ZzhomfJVq/pub?gid=633813531&single=true&output=csv",
-      "marcadores-tabela": "https://docs.google.com/spreadsheets/d/e/2PACX-1vSmGgChlRuHWXjidxaYH9QLW-ICqBLqO3bXcQOXElNaffXDacs7eTb6qjEpMYKzSq-IFJN94i4ajbX-/pub?gid=498053061&single=true&output=csv",
-      "marcadores-feminino": "https://docs.google.com/spreadsheets/d/e/2PACX-1vT_BCGGvtUe-5jH0Yls7hhNA7TDFDQfm6zAiz-j87-sc5OEXwLOVaNSQU20tAtefgTBp87ZzhomfJVq/pub?gid=1661240807&single=true&output=csv",
-      "playoffs-masculino": "https://docs.google.com/spreadsheets/d/e/2PACX-1vSmGgChlRuHWXjidxaYH9QLW-ICqBLqO3bXcQOXElNaffXDacs7eTb6qjEpMYKzSq-IFJN94i4ajbX-/pub?gid=582525547&single=true&output=csv",
-      "playoffs-feminino": "https://docs.google.com/spreadsheets/d/e/2PACX-1vT_BCGGvtUe-5jH0Yls7hhNA7TDFDQfm6zAiz-j87-sc5OEXwLOVaNSQU20tAtefgTBp87ZzhomfJVq/pub?gid=864308096&single=true&output=csv"
+      "classificacao-tabela": "...",
+      "classificacao-feminino": "...",
+      "resultados-tabela": "...",
+      "resultados-feminino": "...",
+      "marcadores-tabela": "...",
+      "marcadores-feminino": "...",
+      "playoffs-masculino": "...",
+      "playoffs-feminino": "..."
     };
 
     async function carregarTabela(id, url) {
@@ -165,7 +189,8 @@
         linhas[0].forEach(c => html += `<th>${c}</th>`);
         html += "</tr></thead><tbody>";
         for (let i = 1; i < linhas.length; i++) {
-          html += "<tr>";
+          const classe = i === 1 && id.includes("playoffs") ? "champion" : "";
+          html += `<tr class='${classe}'>`;
           linhas[i].forEach(c => html += `<td>${c}</td>`);
           html += "</tr>";
         }
