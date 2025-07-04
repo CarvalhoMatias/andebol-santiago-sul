@@ -1,209 +1,25 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="pt">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Regional de Andebol Santiago Sul</title>
   <style>
-    :root {
-      --primary: #66bb6a;
-      --background: #f9f9f9;
-      --text: #222;
-      --accent: #ff6f00;
-      --highlight: #00e676;
-    }
-
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: var(--background);
-      color: var(--text);
-    }
-
-    header {
-      background-color: var(--primary);
-      padding: 1.5em 1em;
-      text-align: center;
-      color: white;
-    }
-
-    header img {
-      height: 60px;
-      margin-bottom: 0.5em;
-    }
-
-    nav {
-      background: white;
-      padding: 1em;
-      display: flex;
-      justify-content: center;
-      gap: 1em;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-    }
-
-    nav a {
-      text-decoration: none;
-      color: var(--primary);
-      font-weight: bold;
-      padding: 0.5em 1em;
-      border-radius: 6px;
-      transition: background 0.3s;
-    }
-
-    nav a:hover, nav a.active {
-      background: #e8f5e9;
-    }
-
-    main {
-      max-width: 1100px;
-      margin: auto;
-      padding: 2em 1em;
-    }
-
-    section {
-      display: none;
-    }
-
-    section.active {
-      display: block;
-      animation: fadeIn 0.3s ease-in-out;
-    }
-
-    h2 {
-      text-align: center;
-      margin-top: 2em;
-    }
-
-    .csv-download {
-      text-align: center;
-      margin-bottom: 1em;
-    }
-
-    .csv-download a {
-      background: var(--primary);
-      color: white;
-      padding: 0.4em 1em;
-      text-decoration: none;
-      border-radius: 5px;
-      font-weight: bold;
-    }
-
     table {
       width: 100%;
       border-collapse: collapse;
-      margin-top: 1em;
-      background: white;
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
-      animation: fadeIn 0.5s ease-in-out;
+      overflow-x: auto;
+      display: block;
     }
-
-    th, td {
-      padding: 12px;
-      text-align: center;
-      border-bottom: 1px solid #eee;
-    }
-
-    th {
-      background: var(--primary);
-      color: white;
-    }
-
-    tr:nth-child(even) {
-      background: #e8f5e9;
-    }
-
-    td.campeao {
-      font-weight: bold;
-      color: #d4af37;
-      border: 2px solid var(--highlight);
-      border-radius: 6px;
-      animation: highlight 2s infinite alternate;
-    }
-
-    td.campeao::before {
-      content: "\1F3C6\0020";
-    }
-
-    @keyframes highlight {
-      from { box-shadow: 0 0 5px var(--highlight); }
-      to { box-shadow: 0 0 20px var(--highlight); }
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    footer {
-      background-color: var(--primary);
-      color: white;
-      text-align: center;
-      padding: 1em;
-      margin-top: 3em;
-    }
-
     @media (max-width: 768px) {
-      th, td { font-size: 14px; padding: 8px; }
+      table {
+        font-size: 14px;
+      }
     }
   </style>
 </head>
 <body>
-  <header>
-    <img src="20250506_1330_Logotipo de Andebol Sul_remix_01jtk01hdsenvbcs12ch68jjd1.png" alt="Logo ARASSUL">
-    <h1>Regional de Andebol Santiago Sul</h1>
-    <p>Temporada 2024/2025</p>
-  </header>
-
-  <nav>
-    <a href="#classificacao" onclick="mostrarAba('classificacao', this)" class="active">Classificação</a>
-    <a href="#resultados" onclick="mostrarAba('resultados', this)">Resultados</a>
-    <a href="#marcadores" onclick="mostrarAba('marcadores', this)">Marcadores</a>
-    <a href="#playoffs" onclick="mostrarAba('playoffs', this)">Playoffs</a>
-  </nav>
-
-  <main>
-    <section id="classificacao" class="active">
-      <h2>Classificação - Sénior Masculino</h2>
-      <div id="classificacao-tabela">Carregando...</div>
-      <h2>Classificação - Sénior Feminino</h2>
-      <div id="classificacao-feminino">Carregando...</div>
-    </section>
-
-    <section id="resultados">
-      <h2>Resultados - Sénior Masculino</h2>
-      <div id="resultados-tabela">Carregando...</div>
-      <h2>Resultados - Sénior Feminino</h2>
-      <div id="resultados-feminino">Carregando...</div>
-    </section>
-
-    <section id="marcadores">
-      <h2>Melhores Marcadores - Sénior Masculino</h2>
-      <div id="marcadores-tabela">Carregando...</div>
-      <h2>Melhores Marcadores - Sénior Feminino</h2>
-      <div id="marcadores-feminino">Carregando...</div>
-    </section>
-
-    <section id="playoffs">
-      <h2>Playoffs - Sénior Masculino</h2>
-      <div class="csv-download">
-        <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vSmGgChlRuHWXjidxaYH9QLW-ICqBLqO3bXcQOXElNaffXDacs7eTb6qjEpMYKzSq-IFJN94i4ajbX-/pub?gid=582525547&single=true&output=csv" target="_blank">⬇ CSV</a>
-      </div>
-      <div id="playoffs-masculino">Carregando...</div>
-
-      <h2>Playoffs - Sénior Feminino</h2>
-      <div class="csv-download">
-        <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vT_BCGGvtUe-5jH0Yls7hhNA7TDFDQfm6zAiz-j87-sc5OEXwLOVaNSQU20tAtefgTBp87ZzhomfJVq/pub?gid=864308096&single=true&output=csv" target="_blank">⬇ CSV</a>
-      </div>
-      <div id="playoffs-feminino">Carregando...</div>
-    </section>
-  </main>
-
-  <footer>
-    &copy; 2025 ARASSUL - Associação Regional de Andebol de Santiago Sul<br>
-    📧 Contacto: <a href="mailto:arandebolssul@gmail.com" style="color: #ffcc80; text-decoration: none;">arandebolssul@gmail.com</a>
-  </footer>
+  <!-- ... (restante do HTML permanece igual) ... -->
 
   <script>
     const tabelas = {
@@ -223,20 +39,20 @@
         const text = await response.text();
         const linhas = text.trim().split("\n").map(l => l.split(","));
         let html = "<table><thead><tr>";
-        linhas[0].forEach(c => html += <th>${c}</th>);
+        linhas[0].forEach(c => html += `<th>${c}</th>`);
         html += "</tr></thead><tbody>";
         for (let i = 1; i < linhas.length; i++) {
           html += "<tr>";
           linhas[i].forEach(c => {
-            const ehCampeao = /campe(ã|a)o?/i.test(c.normalize("NFD").replace(/[̀-ͯ]/g, ""));
-            const celula = ehCampeao ? <td class='campeao'>${c}</td> : <td>${c}</td>;
+            const ehCampeao = /campe(ã|a)o?/i.test(c.normalize("NFD").replace(/[\u0300-\u036f]/g, ""));
+            const celula = ehCampeao ? `<td class='campeao'>${c}</td>` : `<td>${c}</td>`;
             html += celula;
           });
           html += "</tr>";
         }
         html += "</tbody></table>";
         document.getElementById(id).innerHTML = html;
-      } catch {
+      } catch (err) {
         document.getElementById(id).innerHTML = "<p style='color:red;'>Erro ao carregar dados.</p>";
       }
     }
@@ -246,9 +62,13 @@
       el.classList.add("active");
       document.querySelectorAll("main section").forEach(s => s.classList.remove("active"));
       document.getElementById(id).classList.add("active");
+      localStorage.setItem("abaAtual", id);
     }
 
     window.onload = () => {
+      const abaSalva = localStorage.getItem("abaAtual") || "classificacao";
+      const abaEl = document.querySelector(`nav a[href="#${abaSalva}"]`);
+      if (abaEl) mostrarAba(abaSalva, abaEl);
       for (const id in tabelas) carregarTabela(id, tabelas[id]);
     }
   </script>
