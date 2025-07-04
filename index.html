@@ -97,6 +97,132 @@
       color: white;
     }
 
+    tr.champion td:first-child::before {
+      content: "\1F3C6 Campeão - ";
+      font-weight: bold;
+      color: var(--accent);
+    }
+
+    tr.champion {
+      background-color: var(--champion-highlight);
+      font-weight: bold;
+      border: 2px solid var(--accent);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 768px) {
+      th, td {
+        font-size: 13px;
+        padding: 6px;
+      }
+    }
+  </style>
+</head>
+<body>
+<!-- restante do HTML permanece inalterado -->
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Regional de Andebol Santiago Sul</title>
+  <style>
+    :root {
+      --primary: #2e7d32;
+      --background: #f9f9f9;
+      --text: #333;
+      --accent: #ff9800;
+      --champion-highlight: #fffde7;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background: var(--background);
+      color: var(--text);
+    }
+
+    header, footer {
+      background: var(--primary);
+      color: white;
+      text-align: center;
+      padding: 1.5em 1em;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    nav {
+      background: white;
+      padding: 1em;
+      display: flex;
+      justify-content: center;
+      gap: 1em;
+      flex-wrap: wrap;
+      border-bottom: 1px solid #ddd;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--primary);
+      font-weight: bold;
+      padding: 0.6em 1.2em;
+      border-radius: 5px;
+      transition: background 0.3s;
+    }
+
+    nav a.active, nav a:hover {
+      background: var(--champion-highlight);
+      border: 1px solid var(--primary);
+    }
+
+    main {
+      max-width: 960px;
+      margin: auto;
+      padding: 2em 1em;
+    }
+
+    section {
+      display: none;
+    }
+
+    section.active {
+      display: block;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+
+    h2 {
+      border-left: 6px solid var(--primary);
+      padding-left: 10px;
+      margin-top: 2em;
+    }
+
+    .tabela-container {
+      overflow-x: auto;
+      background: white;
+      padding: 1em;
+      border-radius: 10px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.05);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      padding: 12px 8px;
+      border: 1px solid #ccc;
+      text-align: center;
+    }
+
+    th {
+      background: var(--primary);
+      color: white;
+    }
+
     tr.champion td:first-child::after {
       content: " \1F3C6";
       margin-left: 6px;
