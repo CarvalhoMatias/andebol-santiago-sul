@@ -7,50 +7,39 @@
   <style>
     :root {
       --primary: #2e7d32;
-      --background: #f9f9f9;
+      --background: #f4f4f4;
       --text: #333;
-      --accent: #ff9800;
-      --champion-highlight: #fffde7;
-      --glow: 0 0 8px #ff9800, 0 0 12px #ff9800, 0 0 16px #ff9800;
     }
-
     body {
-      font-family: 'Segoe UI', sans-serif;
       margin: 0;
       background: var(--background);
+      font-family: 'Segoe UI', sans-serif;
       color: var(--text);
-      animation: pageFade 1s ease-in-out;
     }
-
-    @keyframes pageFade {
-      from {
-        opacity: 0;
-        transform: scale(0.98);
-      }
-      to {
-        opacity: 1;
-        transform: scale(1);
-      }
-    }
-
-    header, footer {
-      background: var(--primary);
+    /* Hero banner */
+    header {
+      background: url('https://source.unsplash.com/1600x400/?handball') center/cover no-repeat;
       color: white;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.5);
+      padding: 4em 1em;
       text-align: center;
-      padding: 1.5em 1em;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     }
+    header h1 { margin: 0; font-size: 2.5em; }
+    header p { margin: 0.5em 0 0; font-size: 1.2em; }
 
+    /* Sticky navigation */
     nav {
-      background: white;
-      padding: 1em;
+      position: sticky;
+      top: 0;
+      background: rgba(255,255,255,0.9);
+      backdrop-filter: blur(5px);
       display: flex;
       justify-content: center;
       gap: 1em;
-      flex-wrap: wrap;
-      border-bottom: 1px solid #ddd;
+      padding: 1em 0;
+      z-index: 100;
+      border-bottom: 1px solid #eee;
     }
-
     nav a {
       text-decoration: none;
       color: var(--primary);
@@ -59,10 +48,9 @@
       border-radius: 5px;
       transition: background 0.3s;
     }
-
     nav a.active, nav a:hover {
-      background: var(--champion-highlight);
-      border: 1px solid var(--primary);
+      background: var(--primary);
+      color: white;
     }
 
     main {
@@ -71,73 +59,65 @@
       padding: 2em 1em;
     }
 
-    section {
-      display: none;
-    }
-
-    section.active {
+    /* Card-style rows */
+    .tabela-container tbody tr {
       display: block;
-      animation: fadeIn 0.4s ease-in-out;
-    }
-
-    h2 {
-      border-left: 6px solid var(--primary);
-      padding-left: 10px;
-      margin-top: 2em;
-    }
-
-    .tabela-container {
-      overflow-x: auto;
       background: white;
-      padding: 1em;
-      border-radius: 10px;
-      box-shadow: 0 0 8px rgba(0,0,0,0.05);
-      animation: fadeIn 0.5s ease-in-out;
+      margin-bottom: 1em;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      transition: transform 0.2s, box-shadow 0.2s;
     }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
+    .tabela-container tbody tr:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
-
-    th, td {
-      padding: 12px 8px;
-      border: 1px solid #ccc;
-      text-align: center;
+    .tabela-container td {
+      display: flex;
+      justify-content: space-between;
+      padding: 12px;
+      border-bottom: 1px solid #eee;
     }
-
-    th {
-      background: var(--primary);
-      color: white;
+    .tabela-container td:last-child {
+      border-bottom: none;
     }
+    .tabela-container th { display: none; }
 
-    tr.champion td:first-child::before {
-      content: "\1F3C6 Campeão - ";
-      font-weight: bold;
-      color: var(--accent);
-    }
-
-    tr.champion {
-      background-color: var(--champion-highlight);
-      font-weight: bold;
-      border: 2px solid var(--accent);
-      box-shadow: var(--glow);
-    }
-
+    /* Fade-in animation */
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(10px); }
       to { opacity: 1; transform: translateY(0); }
     }
+    section.active {
+      display: block;
+      animation: fadeIn 0.5s cubic-bezier(0.25,0.8,0.25,1);
+    }
 
-    @media (max-width: 768px) {
-      nav {
-        flex-direction: column;
+    /* Traditional table on desktop */
+    @media (min-width: 600px) {
+      .tabela-container tbody tr {
+        display: table-row;
+        border-radius: 0;
+        box-shadow: none;
+        transform: none;
       }
+      .tabela-container td, th {
+        display: table-cell;
+        padding: 8px;
+        border-bottom: 1px solid #ccc;
+      }
+      .tabela-container th {
+        background: var(--primary);
+        color: white;
+        display: table-cell;
+      }
+    }
 
-      th, td {
-        font-size: 13px;
-        padding: 6px;
-      }
+    footer {
+      text-align: center;
+      padding: 1em 0;
+      background: #eee;
+      margin-top: 2em;
     }
   </style>
 </head>
@@ -156,31 +136,16 @@
 
   <main>
     <section id="classificacao" class="active">
-      <h2>Classificação</h2>
       <div id="classificacao-tabela" class="tabela-container">A carregar...</div>
-      <h2>Classificação Feminino</h2>
-      <div id="classificacao-feminino" class="tabela-container">A carregar...</div>
     </section>
-
     <section id="resultados">
-      <h2>Resultados</h2>
       <div id="resultados-tabela" class="tabela-container">A carregar...</div>
-      <h2>Resultados Feminino</h2>
-      <div id="resultados-feminino" class="tabela-container">A carregar...</div>
     </section>
-
     <section id="marcadores">
-      <h2>Marcadores</h2>
       <div id="marcadores-tabela" class="tabela-container">A carregar...</div>
-      <h2>Marcadores Feminino</h2>
-      <div id="marcadores-feminino" class="tabela-container">A carregar...</div>
     </section>
-
     <section id="playoffs">
-      <h2>Playoffs</h2>
       <div id="playoffs-masculino" class="tabela-container">A carregar...</div>
-      <h2>Playoffs Feminino</h2>
-      <div id="playoffs-feminino" class="tabela-container">A carregar...</div>
     </section>
   </main>
 
@@ -191,29 +156,24 @@
   <script>
     const tabelas = {
       "classificacao-tabela": "https://docs.google.com/spreadsheets/d/e/2PACX-1vSmGgChlRuHWXjidxaYH9QLW-ICqBLqO3bXcQOXElNaffXDacs7eTb6qjEpMYKzSq-IFJN94i4ajbX-/pub?gid=0&single=true&output=csv",
-      "classificacao-feminino": "https://docs.google.com/spreadsheets/d/e/2PACX-1vT_BCGGvtUe-5jH0Yls7hhNA7TDFDQfm6zAiz-j87-sc5OEXwLOVaNSQU20tAtefgTBp87ZzhomfJVq/pub?gid=0&single=true&output=csv",
       "resultados-tabela": "https://docs.google.com/spreadsheets/d/e/2PACX-1vSmGgChlRuHWXjidxaYH9QLW-ICqBLqO3bXcQOXElNaffXDacs7eTb6qjEpMYKzSq-IFJN94i4ajbX-/pub?gid=34368686&single=true&output=csv",
-      "resultados-feminino": "https://docs.google.com/spreadsheets/d/e/2PACX-1vT_BCGGvtUe-5jH0Yls7hhNA7TDFDQfm6zAiz-j87-sc5OEXwLOVaNSQU20tAtefgTBp87ZzhomfJVq/pub?gid=633813531&single=true&output=csv",
       "marcadores-tabela": "https://docs.google.com/spreadsheets/d/e/2PACX-1vSmGgChlRuHWXjidxaYH9QLW-ICqBLqO3bXcQOXElNaffXDacs7eTb6qjEpMYKzSq-IFJN94i4ajbX-/pub?gid=498053061&single=true&output=csv",
-      "marcadores-feminino": "https://docs.google.com/spreadsheets/d/e/2PACX-1vT_BCGGvtUe-5jH0Yls7hhNA7TDFDQfm6zAiz-j87-sc5OEXwLOVaNSQU20tAtefgTBp87ZzhomfJVq/pub?gid=1661240807&single=true&output=csv",
-      "playoffs-masculino": "https://docs.google.com/spreadsheets/d/e/2PACX-1vSmGgChlRuHWXjidxaYH9QLW-ICqBLqO3bXcQOXElNaffXDacs7eTb6qjEpMYKzSq-IFJN94i4ajbX-/pub?gid=582525547&single=true&output=csv",
-      "playoffs-feminino": "https://docs.google.com/spreadsheets/d/e/2PACX-1vT_BCGGvtUe-5jH0Yls7hhNA7TDFDQfm6zAiz-j87-sc5OEXwLOVaNSQU20tAtefgTBp87ZzhomfJVq/pub?gid=864308096&single=true&output=csv"
+      "playoffs-masculino": "https://docs.google.com/spreadsheets/d/e/2PACX-1vSmGgChlRuHWXjidxaYH9QLW-ICqBLqO3bXcQOXElNaffXDacs7eTb6qjEpMYKzSq-IFJN94i4ajbX-/pub?gid=582525547&single=true&output=csv"
     };
 
     async function carregarTabela(id, url) {
       try {
-        const response = await fetch(url);
-        const text = await response.text();
+        const resp = await fetch(url);
+        const text = await resp.text();
         const linhas = text.trim().split("\n").map(l => l.split(","));
         let html = "<table><thead><tr>";
         linhas[0].forEach(c => html += `<th>${c}</th>`);
         html += "</tr></thead><tbody>";
-        for (let i = 1; i < linhas.length; i++) {
-          const classe = i === 1 && id.includes("playoffs") ? "champion" : "";
-          html += `<tr class='${classe}'>`;
-          linhas[i].forEach(c => html += `<td>${c}</td>`);
+        linhas.slice(1).forEach(linha => {
+          html += "<tr>";
+          linha.forEach(c => html += `<td>${c}</td>`);
           html += "</tr>";
-        }
+        });
         html += "</tbody></table>";
         document.getElementById(id).innerHTML = html;
       } catch (err) {
@@ -230,11 +190,9 @@
     }
 
     window.onload = () => {
-      const hash = location.hash?.substring(1);
-      const abaSalva = hash || localStorage.getItem("abaAtual") || "classificacao";
-      const abaEl = document.querySelector(`nav a[href="#${abaSalva}"]`);
-      if (abaEl) mostrarAba(abaSalva, abaEl);
-      for (const id in tabelas) carregarTabela(id, tabelas[id]);
+      const aba = location.hash.substring(1) || localStorage.getItem("abaAtual") || "classificacao";
+      document.querySelector(`nav a[href="#${aba}"]`)?.click();
+      Object.entries(tabelas).forEach(([id, url]) => carregarTabela(id, url));
     };
   </script>
 </body>
