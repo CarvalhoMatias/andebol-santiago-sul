@@ -108,10 +108,6 @@
       box-shadow: var(--glow);
     }
 
-    table {
-      display: none;
-    }
-
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(10px); }
       to { opacity: 1; transform: translateY(0); }
@@ -131,10 +127,10 @@
   </header>
 
   <nav>
-    <a href="#classificacao" onclick="mostrarAba('classificacao', this)" class="active">🏋️ Classificação</a>
-    <a href="#resultados" onclick="mostrarAba('resultados', this)">🔢 Resultados</a>
-    <a href="#marcadores" onclick="mostrarAba('marcadores', this)">🔍 Marcadores</a>
-    <a href="#playoffs" onclick="mostrarAba('playoffs', this)">🏆 Playoffs</a>
+    <a href="#classificacao" class="tab-link active">🏋️ Classificação</a>
+    <a href="#resultados" class="tab-link">🔢 Resultados</a>
+    <a href="#marcadores" class="tab-link">🔍 Marcadores</a>
+    <a href="#playoffs" class="tab-link">🏆 Playoffs</a>
   </nav>
 
   <main>
@@ -172,20 +168,28 @@
   </footer>
 
   <script>
-    function mostrarAba(id, el) {
+    function mostrarAba(id) {
       document.querySelectorAll("nav a").forEach(a => a.classList.remove("active"));
-      if (el) el.classList.add("active");
+      const activeLink = document.querySelector(`nav a[href='#${id}']`);
+      if (activeLink) activeLink.classList.add("active");
       document.querySelectorAll("main section").forEach(s => s.classList.remove("active"));
-      document.getElementById(id).classList.add("active");
-      localStorage.setItem("abaAtual", id);
+      const activeSection = document.getElementById(id);
+      if (activeSection) activeSection.classList.add("active");
     }
 
-    window.onload = () => {
-      const abaHash = location.hash?.substring(1);
-      const abaSalva = abaHash || localStorage.getItem("abaAtual") || "classificacao";
-      const abaEl = document.querySelector(`nav a[href="#${abaSalva}"]`);
-      if (abaEl) mostrarAba(abaSalva, abaEl);
-    };
+    window.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll("nav a").forEach(link => {
+        link.addEventListener("click", e => {
+          e.preventDefault();
+          const id = link.getAttribute("href").substring(1);
+          mostrarAba(id);
+          history.pushState(null, '', `#${id}`);
+        });
+      });
+
+      const hash = location.hash.substring(1) || "classificacao";
+      mostrarAba(hash);
+    });
   </script>
 </body>
 </html>
