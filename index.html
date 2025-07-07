@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Regional de Andebol Santiago Sul</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --primary: #2e7d32;
@@ -14,7 +15,7 @@
     }
 
     body {
-      font-family: 'Segoe UI', sans-serif;
+      font-family: 'Montserrat', sans-serif;
       margin: 0;
       background: var(--background);
       color: var(--text);
@@ -32,6 +33,9 @@
       text-align: center;
       padding: 1.5em 1em;
       box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
 
     nav {
@@ -49,17 +53,21 @@
       color: var(--primary);
       font-weight: bold;
       padding: 0.6em 1.2em;
-      border-radius: 5px;
-      transition: background 0.3s;
+      border-radius: 12px;
+      transition: background 0.3s, transform 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 0.5em;
     }
 
     nav a.active, nav a:hover {
-      background: #f0f0f0;
+      background: #e0f2f1;
       border: 1px solid var(--primary);
+      transform: scale(1.05);
     }
 
     main {
-      max-width: 960px;
+      max-width: 1200px;
       margin: auto;
       padding: 2em 1em;
     }
@@ -80,38 +88,28 @@
     }
 
     .tabela-container {
-      overflow-x: auto;
-      background: white;
-      padding: 1em;
-      border-radius: 10px;
-      box-shadow: 0 0 8px rgba(0,0,0,0.05);
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5em;
+      background: none;
+      padding: 0;
       animation: fadeIn 0.5s ease-in-out;
     }
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
+    .card {
+      background: white;
+      padding: 1em;
+      border-radius: 16px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.05);
     }
 
-    th, td {
-      padding: 12px 8px;
-      border: 1px solid #ccc;
-      text-align: center;
-    }
-
-    th {
-      background: var(--primary);
-      color: white;
-    }
-
-    tr.champion td:first-child::before {
-      content: "";
-    }
-
-    tr.champion {
-      font-weight: bold;
+    .champion {
       border: 2px solid var(--accent);
       box-shadow: var(--glow);
+    }
+
+    table {
+      display: none;
     }
 
     @keyframes fadeIn {
@@ -123,51 +121,46 @@
       nav {
         flex-direction: column;
       }
-
-      th, td {
-        font-size: 13px;
-        padding: 6px;
-      }
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>Regional de Andebol Santiago Sul</h1>
+    <h1>ARASSUL | Andebol com Alma</h1>
     <p>Época 2024/2025</p>
   </header>
 
   <nav>
-    <a href="#classificacao" onclick="mostrarAba('classificacao', this)" class="active">Classificação</a>
-    <a href="#resultados" onclick="mostrarAba('resultados', this)">Resultados</a>
-    <a href="#marcadores" onclick="mostrarAba('marcadores', this)">Marcadores</a>
-    <a href="#playoffs" onclick="mostrarAba('playoffs', this)">Playoffs</a>
+    <a href="#classificacao" onclick="mostrarAba('classificacao', this)" class="active">🏋️ Classificação</a>
+    <a href="#resultados" onclick="mostrarAba('resultados', this)">🔢 Resultados</a>
+    <a href="#marcadores" onclick="mostrarAba('marcadores', this)">🔍 Marcadores</a>
+    <a href="#playoffs" onclick="mostrarAba('playoffs', this)">🏆 Playoffs</a>
   </nav>
 
   <main>
     <section id="classificacao" class="active">
-      <h2>Classificação</h2>
+      <h2>Classificação Masculino</h2>
       <div id="classificacao-tabela" class="tabela-container">A carregar...</div>
       <h2>Classificação Feminino</h2>
       <div id="classificacao-feminino" class="tabela-container">A carregar...</div>
     </section>
 
     <section id="resultados">
-      <h2>Resultados</h2>
+      <h2>Resultados Masculino</h2>
       <div id="resultados-tabela" class="tabela-container">A carregar...</div>
       <h2>Resultados Feminino</h2>
       <div id="resultados-feminino" class="tabela-container">A carregar...</div>
     </section>
 
     <section id="marcadores">
-      <h2>Marcadores</h2>
+      <h2>Marcadores Masculino</h2>
       <div id="marcadores-tabela" class="tabela-container">A carregar...</div>
-      <h2>Marcadores Feminino</h2>
+      <h2>Marcadoras Feminino</h2>
       <div id="marcadores-feminino" class="tabela-container">A carregar...</div>
     </section>
 
     <section id="playoffs">
-      <h2>Playoffs</h2>
+      <h2>Playoffs Masculino</h2>
       <div id="playoffs-masculino" class="tabela-container">A carregar...</div>
       <h2>Playoffs Feminino</h2>
       <div id="playoffs-feminino" class="tabela-container">A carregar...</div>
@@ -179,38 +172,6 @@
   </footer>
 
   <script>
-    const tabelas = {
-      "classificacao-tabela": "https://docs.google.com/spreadsheets/d/e/2PACX-1vSmGgChlRuHWXjidxaYH9QLW-ICqBLqO3bXcQOXElNaffXDacs7eTb6qjEpMYKzSq-IFJN94i4ajbX-/pub?gid=0&single=true&output=csv",
-      "classificacao-feminino": "https://docs.google.com/spreadsheets/d/e/2PACX-1vT_BCGGvtUe-5jH0Yls7hhNA7TDFDQfm6zAiz-j87-sc5OEXwLOVaNSQU20tAtefgTBp87ZzhomfJVq/pub?gid=0&single=true&output=csv",
-      "resultados-tabela": "https://docs.google.com/spreadsheets/d/e/2PACX-1vSmGgChlRuHWXjidxaYH9QLW-ICqBLqO3bXcQOXElNaffXDacs7eTb6qjEpMYKzSq-IFJN94i4ajbX-/pub?gid=34368686&single=true&output=csv",
-      "resultados-feminino": "https://docs.google.com/spreadsheets/d/e/2PACX-1vT_BCGGvtUe-5jH0Yls7hhNA7TDFDQfm6zAiz-j87-sc5OEXwLOVaNSQU20tAtefgTBp87ZzhomfJVq/pub?gid=633813531&single=true&output=csv",
-      "marcadores-tabela": "https://docs.google.com/spreadsheets/d/e/2PACX-1vSmGgChlRuHWXjidxaYH9QLW-ICqBLqO3bXcQOXElNaffXDacs7eTb6qjEpMYKzSq-IFJN94i4ajbX-/pub?gid=498053061&single=true&output=csv",
-      "marcadores-feminino": "https://docs.google.com/spreadsheets/d/e/2PACX-1vT_BCGGvtUe-5jH0Yls7hhNA7TDFDQfm6zAiz-j87-sc5OEXwLOVaNSQU20tAtefgTBp87ZzhomfJVq/pub?gid=1661240807&single=true&output=csv",
-      "playoffs-masculino": "https://docs.google.com/spreadsheets/d/e/2PACX-1vSmGgChlRuHWXjidxaYH9QLW-ICqBLqO3bXcQOXElNaffXDacs7eTb6qjEpMYKzSq-IFJN94i4ajbX-/pub?gid=582525547&single=true&output=csv",
-      "playoffs-feminino": "https://docs.google.com/spreadsheets/d/e/2PACX-1vT_BCGGvtUe-5jH0Yls7hhNA7TDFDQfm6zAiz-j87-sc5OEXwLOVaNSQU20tAtefgTBp87ZzhomfJVq/pub?gid=864308096&single=true&output=csv"
-    };
-
-    async function carregarTabela(id, url) {
-      try {
-        const response = await fetch(url);
-        const text = await response.text();
-        const linhas = text.trim().split("\n").map(l => l.split(","));
-        let html = "<table><thead><tr>";
-        linhas[0].forEach(c => html += `<th>${c}</th>`);
-        html += "</tr></thead><tbody>";
-        for (let i = 1; i < linhas.length; i++) {
-          const classe = i === 1 && id.includes("playoffs") ? "champion" : "";
-          html += `<tr class='${classe}'>`;
-          linhas[i].forEach(c => html += `<td>${c}</td>`);
-          html += "</tr>";
-        }
-        html += "</tbody></table>";
-        document.getElementById(id).innerHTML = html;
-      } catch (err) {
-        document.getElementById(id).innerHTML = "<p style='color:red;'>Erro ao carregar dados.</p>";
-      }
-    }
-
     function mostrarAba(id, el) {
       document.querySelectorAll("nav a").forEach(a => a.classList.remove("active"));
       el.classList.add("active");
@@ -218,14 +179,6 @@
       document.getElementById(id).classList.add("active");
       localStorage.setItem("abaAtual", id);
     }
-
-    window.onload = () => {
-      const hash = location.hash?.substring(1);
-      const abaSalva = hash || localStorage.getItem("abaAtual") || "classificacao";
-      const abaEl = document.querySelector(`nav a[href="#${abaSalva}"]`);
-      if (abaEl) mostrarAba(abaSalva, abaEl);
-      for (const id in tabelas) carregarTabela(id, tabelas[id]);
-    };
   </script>
 </body>
 </html>
