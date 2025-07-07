@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Regional de Andebol Santiago Sul</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --primary: #66bb6a;
@@ -14,7 +15,7 @@
 
     body {
       margin: 0;
-      font-family: 'Segoe UI', sans-serif;
+      font-family: 'Montserrat', sans-serif;
       background: var(--background);
       color: var(--text);
     }
@@ -38,19 +39,25 @@
       justify-content: center;
       gap: 1em;
       box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      flex-wrap: wrap;
     }
 
     nav a {
       text-decoration: none;
       color: var(--primary);
       font-weight: bold;
-      padding: 0.5em 1em;
-      border-radius: 6px;
-      transition: background 0.3s;
+      padding: 0.6em 1.2em;
+      border-radius: 10px;
+      transition: background 0.3s, transform 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 0.5em;
+      font-size: 1rem;
     }
 
     nav a:hover, nav a.active {
       background: #e8f5e9;
+      transform: scale(1.05);
     }
 
     main {
@@ -76,17 +83,20 @@
     table {
       width: 100%;
       border-collapse: collapse;
-      margin-top: 1em;
+      margin-top: 1.5em;
       background: white;
-      border-radius: 8px;
+      border-radius: 10px;
       overflow: hidden;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+      box-shadow: 0 1px 6px rgba(0,0,0,0.1);
+      display: block;
+      overflow-x: auto;
     }
 
     th, td {
       padding: 12px;
       text-align: center;
       border-bottom: 1px solid #eee;
+      white-space: nowrap;
     }
 
     th {
@@ -120,9 +130,9 @@
   </header>
 
   <nav>
-    <a href="#classificacao" onclick="mostrarAba('classificacao', this)" class="active">Classificação</a>
-    <a href="#resultados" onclick="mostrarAba('resultados', this)">Resultados</a>
-    <a href="#marcadores" onclick="mostrarAba('marcadores', this)">Melhores Marcadores</a>
+    <a href="#classificacao" onclick="mostrarAba('classificacao', this)" class="active">📊 Classificação</a>
+    <a href="#resultados" onclick="mostrarAba('resultados', this)">🏆 Resultados</a>
+    <a href="#marcadores" onclick="mostrarAba('marcadores', this)">🔍 Melhores Marcadores</a>
   </nav>
 
   <main>
@@ -145,6 +155,8 @@
       <div id="marcadores-tabela">Carregando...</div>
       <h2>Melhores Marcadores - Sénior Feminino</h2>
       <div id="marcadores-feminino">Carregando...</div>
+      <h2>Golos Por Jornada</h2>
+      <div id="golos-jornada" style="text-align: center;">Carregando...</div>
     </section>
   </main>
 
