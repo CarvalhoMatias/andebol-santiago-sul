@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Regional de Andebol Santiago Sul</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
   <style>
@@ -172,12 +172,13 @@
       document.querySelectorAll("nav a").forEach(a => a.classList.remove("active"));
       const activeLink = document.querySelector(`nav a[href='#${id}']`);
       if (activeLink) activeLink.classList.add("active");
+
       document.querySelectorAll("main section").forEach(s => s.classList.remove("active"));
       const activeSection = document.getElementById(id);
       if (activeSection) activeSection.classList.add("active");
     }
 
-    window.addEventListener("DOMContentLoaded", () => {
+    document.addEventListener("DOMContentLoaded", () => {
       document.querySelectorAll("nav a").forEach(link => {
         link.addEventListener("click", e => {
           e.preventDefault();
@@ -193,32 +194,3 @@
   </script>
 </body>
 </html>
-<script>
-  // Método alternativo e robusto para ativar as abas
-  window.addEventListener("load", () => {
-    const tabs = document.querySelectorAll("nav a");
-    const sections = document.querySelectorAll("main section");
-
-    function ativarAba(id) {
-      tabs.forEach(tab => {
-        tab.classList.toggle("active", tab.getAttribute("href") === `#${id}`);
-      });
-      sections.forEach(sec => {
-        sec.classList.toggle("active", sec.id === id);
-      });
-    }
-
-    tabs.forEach(link => {
-      link.addEventListener("click", e => {
-        e.preventDefault();
-        const destino = link.getAttribute("href").replace("#", "");
-        ativarAba(destino);
-        history.pushState(null, "", `#${destino}`);
-      });
-    });
-
-    // Ativação automática com hash ou padrão
-    const destinoInicial = location.hash ? location.hash.replace("#", "") : "classificacao";
-    ativarAba(destinoInicial);
-  });
-</script>
