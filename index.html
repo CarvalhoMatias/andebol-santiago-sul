@@ -193,3 +193,32 @@
   </script>
 </body>
 </html>
+<script>
+  // Método alternativo e robusto para ativar as abas
+  window.addEventListener("load", () => {
+    const tabs = document.querySelectorAll("nav a");
+    const sections = document.querySelectorAll("main section");
+
+    function ativarAba(id) {
+      tabs.forEach(tab => {
+        tab.classList.toggle("active", tab.getAttribute("href") === `#${id}`);
+      });
+      sections.forEach(sec => {
+        sec.classList.toggle("active", sec.id === id);
+      });
+    }
+
+    tabs.forEach(link => {
+      link.addEventListener("click", e => {
+        e.preventDefault();
+        const destino = link.getAttribute("href").replace("#", "");
+        ativarAba(destino);
+        history.pushState(null, "", `#${destino}`);
+      });
+    });
+
+    // Ativação automática com hash ou padrão
+    const destinoInicial = location.hash ? location.hash.replace("#", "") : "classificacao";
+    ativarAba(destinoInicial);
+  });
+</script>
