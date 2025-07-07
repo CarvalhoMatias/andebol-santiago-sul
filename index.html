@@ -1,128 +1,104 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Regional de Andebol Santiago Sul</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Melhores Marcadoras - Andebol Santiago Sul</title>
   <style>
     :root {
-      --primary: #66bb6a;
-      --background: #f9f9f9;
+      --primary: #0d47a1;
+      --background: #f4f6f8;
       --text: #222;
       --accent: #ff6f00;
-      --highlight: #00e676;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
     body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: var(--background);
       color: var(--text);
     }
 
     header {
-      background-color: var(--primary);
+      background: var(--primary);
+      color: white;
       padding: 1.5em 1em;
       text-align: center;
-      color: white;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
 
     nav {
       background: white;
-      padding: 1em;
+      padding: 0.8em 1em;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
       display: flex;
       justify-content: center;
       gap: 1em;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
     }
 
     nav a {
       text-decoration: none;
       color: var(--primary);
       font-weight: bold;
-      padding: 0.5em 1em;
-      border-radius: 6px;
+      padding: 0.4em 0.8em;
+      border-radius: 5px;
       transition: background 0.3s;
     }
 
-    nav a:hover,
-    nav a.active {
-      background: #e8f5e9;
+    nav a:hover {
+      background: #e3f2fd;
     }
 
     main {
+      padding: 2em 1em;
       max-width: 1100px;
       margin: auto;
-      padding: 2em 1em;
     }
 
-    .tab-content {
-      display: none;
-    }
-
-    .tab-content.active {
-      display: block;
-      animation: fadeIn 0.3s ease-in-out;
-    }
-
-    h2 {
-      text-align: center;
-      margin-top: 2em;
-    }
-
-    table {
+    iframe {
       width: 100%;
-      border-collapse: collapse;
-      margin-top: 1em;
-      background: white;
+      height: 650px;
+      border: 1px solid #ccc;
       border-radius: 8px;
-      overflow-x: auto;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
-      display: block;
-    }
-
-    th, td {
-      padding: 12px;
-      text-align: center;
-      border-bottom: 1px solid #eee;
-    }
-
-    th {
-      background: var(--primary);
-      color: white;
-    }
-
-    tr:nth-child(even) {
-      background: #e8f5e9;
-    }
-
-    tr.highlight-masculino:nth-child(-n+4),
-    tr.highlight-feminino:nth-child(-n+3) {
-      background: #dcedc8;
-      font-weight: bold;
-    }
-
-    td.campeao {
-      font-weight: bold;
-      color: #d4af37;
-      border: 2px solid var(--highlight);
-      border-radius: 6px;
-      animation: highlight 2s infinite alternate;
-    }
-
-    td.campeao::before {
-      content: "\1F3C6\0020";
-    }
-
-    @keyframes highlight {
-      from { box-shadow: 0 0 5px var(--highlight); }
-      to { box-shadow: 0 0 20px var(--highlight); }
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
+      background: white;
     }
 
     footer {
-      background-color: var(--primary);
+      background: var(--primary);
+      color: white;
+      text-align: center;
+      padding: 1em;
+      margin-top: 2em;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Melhores Marcadoras</h1>
+    <p>Campeonato Regional de Andebol - Santiago Sul</p>
+  </header>
+
+  <nav>
+    <a href="index.html">Início</a>
+    <a href="classificacao.html">Classificação</a>
+    <a href="resultados.html">Resultados</a>
+    <a href="melhores-marcadoras.html" style="background:#e3f2fd;">Marcadoras</a>
+  </nav>
+
+  <main>
+    <iframe 
+      src="https://docs.google.com/spreadsheets/d/e/2PACX-1vT_BCGGvtUe-5jH0Yls7hhNA7TDFDQfm6zAiz-j87-sc5OEXwLOVaNSQU20tAtefgTBp87ZzhomfJVq/pub?gid=1661240807&single=true&output=html"
+      allowfullscreen>
+    </iframe>
+  </main>
+
+  <footer>
+    &copy; 2025 ARASSUL - Associação Regional de Andebol de Santiago Sul
+  </footer>
+</body>
+</html>
