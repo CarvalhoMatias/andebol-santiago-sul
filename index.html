@@ -4,38 +4,32 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Regional de Andebol Santiago Sul</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary: #2e7d32;
+      --primary: #66bb6a;
       --background: #f9f9f9;
-      --text: #333;
-      --accent: #ff9800;
-      --glow: 0 0 8px #ff9800, 0 0 12px #ff9800, 0 0 16px #ff9800;
+      --text: #222;
+      --accent: #ff6f00;
+      --highlight: #00e676;
     }
 
     body {
-      font-family: 'Montserrat', sans-serif;
       margin: 0;
+      font-family: 'Segoe UI', sans-serif;
       background: var(--background);
       color: var(--text);
-      animation: pageFade 1s ease-in-out;
     }
 
-    @keyframes pageFade {
-      from { opacity: 0; transform: scale(0.98); }
-      to { opacity: 1; transform: scale(1); }
-    }
-
-    header, footer {
-      background: var(--primary);
-      color: white;
-      text-align: center;
+    header {
+      background-color: var(--primary);
       padding: 1.5em 1em;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
+      text-align: center;
+      color: white;
+    }
+
+    header img {
+      height: 60px;
+      margin-bottom: 0.5em;
     }
 
     nav {
@@ -44,30 +38,24 @@
       display: flex;
       justify-content: center;
       gap: 1em;
-      flex-wrap: wrap;
-      border-bottom: 1px solid #ddd;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
     }
 
     nav a {
       text-decoration: none;
       color: var(--primary);
       font-weight: bold;
-      padding: 0.6em 1.2em;
-      border-radius: 12px;
-      transition: background 0.3s, transform 0.2s;
-      display: flex;
-      align-items: center;
-      gap: 0.5em;
+      padding: 0.5em 1em;
+      border-radius: 6px;
+      transition: background 0.3s;
     }
 
-    nav a.active, nav a:hover {
-      background: #e0f2f1;
-      border: 1px solid var(--primary);
-      transform: scale(1.05);
+    nav a:hover, nav a.active {
+      background: #e8f5e9;
     }
 
     main {
-      max-width: 1200px;
+      max-width: 1100px;
       margin: auto;
       padding: 2em 1em;
     }
@@ -78,34 +66,76 @@
 
     section.active {
       display: block;
-      animation: fadeIn 0.4s ease-in-out;
+      animation: fadeIn 0.3s ease-in-out;
     }
 
     h2 {
-      border-left: 6px solid var(--primary);
-      padding-left: 10px;
+      text-align: center;
       margin-top: 2em;
     }
 
-    .tabela-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5em;
-      background: none;
-      padding: 0;
-      animation: fadeIn 0.5s ease-in-out;
+    .csv-download {
+      text-align: center;
+      margin-bottom: 1em;
     }
 
-    .card {
+    .csv-download a {
+      background: var(--primary);
+      color: white;
+      padding: 0.4em 1em;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1em;
       background: white;
-      padding: 1em;
-      border-radius: 16px;
-      box-shadow: 0 0 8px rgba(0,0,0,0.05);
+      border-radius: 8px;
+      overflow-x: auto;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+      animation: fadeIn 0.5s ease-in-out;
+      display: block;
     }
 
-    .champion {
-      border: 2px solid var(--accent);
-      box-shadow: var(--glow);
+    th, td {
+      padding: 12px;
+      text-align: center;
+      border-bottom: 1px solid #eee;
+    }
+
+    th {
+      background: var(--primary);
+      color: white;
+    }
+
+    tr:nth-child(even) {
+      background: #e8f5e9;
+    }
+
+    tr.highlight-masculino:nth-child(-n+4),
+    tr.highlight-feminino:nth-child(-n+3) {
+      background: #dcedc8;
+      font-weight: bold;
+    }
+
+    td.campeao {
+      font-weight: bold;
+      color: #d4af37;
+      border: 2px solid var(--highlight);
+      border-radius: 6px;
+      animation: highlight 2s infinite alternate;
+    }
+
+    td.campeao::before {
+      content: "\1F3C6\0020";
+    }
+
+    @keyframes highlight {
+      from { box-shadow: 0 0 5px var(--highlight); }
+      to { box-shadow: 0 0 20px var(--highlight); }
     }
 
     @keyframes fadeIn {
@@ -113,75 +143,73 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
+    footer {
+      background-color: var(--primary);
+      color: white;
+      text-align: center;
+      padding: 1em;
+      margin-top: 3em;
+    }
+
     @media (max-width: 768px) {
-      nav {
-        flex-direction: column;
+      table, thead, tbody, th, td, tr {
+        font-size: 13px;
+        display: block;
+        width: 100%;
       }
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>ARASSUL | Andebol com Alma</h1>
-    <p>Época 2024/2025</p>
+    <h1>Regional de Andebol Santiago Sul</h1>
   </header>
 
   <nav>
-    <a href="#classificacao" class="tab-link active">🏋️ Classificação</a>
-    <a href="#resultados" class="tab-link">🔢 Resultados</a>
-    <a href="#marcadores" class="tab-link">🔍 Marcadores</a>
+    <a href="#classificacao" class="tab-link">Classificação</a>
+    <a href="#resultados" class="tab-link">Resultados</a>
+    <a href="#playoffs" class="tab-link">Playoffs</a>
+    <a href="#marcadores" class="tab-link">Melhores Marcadores</a>
   </nav>
 
   <main>
-    <section id="classificacao" class="active">
-      <h2>Classificação Masculino</h2>
-      <div id="classificacao-tabela" class="tabela-container">A carregar...</div>
-      <h2>Classificação Feminino</h2>
-      <div id="classificacao-feminino" class="tabela-container">A carregar...</div>
+    <section id="classificacao" class="tab-content active">
+      <h2>Classificação</h2>
+      <!-- conteúdo aqui -->
     </section>
-
-    <section id="resultados">
-      <h2>Resultados Masculino</h2>
-      <div id="resultados-tabela" class="tabela-container">A carregar...</div>
-      <h2>Resultados Feminino</h2>
-      <div id="resultados-feminino" class="tabela-container">A carregar...</div>
+    <section id="resultados" class="tab-content">
+      <h2>Resultados</h2>
+      <!-- conteúdo aqui -->
     </section>
-
-    <section id="marcadores">
-      <h2>Marcadores Masculino</h2>
-      <div id="marcadores-tabela" class="tabela-container">A carregar...</div>
-      <h2>Marcadoras Feminino</h2>
-      <div id="marcadores-feminino" class="tabela-container">A carregar...</div>
+    <section id="playoffs" class="tab-content">
+      <h2>Playoffs</h2>
+      <!-- conteúdo aqui -->
+    </section>
+    <section id="marcadores" class="tab-content">
+      <h2>Melhores Marcadores</h2>
+      <!-- conteúdo aqui -->
     </section>
   </main>
 
   <footer>
-    &copy; 2025 ARASSUL – Todos os direitos reservados
+    &copy; 2025 ARASSUL - Associação Regional de Andebol de Santiago Sul
   </footer>
 
   <script>
-    function mostrarAba(id) {
-      document.querySelectorAll("nav a").forEach(a => a.classList.remove("active"));
-      const activeLink = document.querySelector(`nav a[href='#${id}']`);
-      if (activeLink) activeLink.classList.add("active");
+    const links = document.querySelectorAll('.tab-link');
+    const tabs = document.querySelectorAll('.tab-content');
 
-      document.querySelectorAll("main section").forEach(s => s.classList.remove("active"));
-      const activeSection = document.getElementById(id);
-      if (activeSection) activeSection.classList.add("active");
-    }
+    links.forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = this.getAttribute('href').substring(1);
 
-    document.addEventListener("DOMContentLoaded", () => {
-      document.querySelectorAll("nav a").forEach(link => {
-        link.addEventListener("click", e => {
-          e.preventDefault();
-          const id = link.getAttribute("href").substring(1);
-          mostrarAba(id);
-          history.pushState(null, '', `#${id}`);
-        });
+        links.forEach(l => l.classList.remove('active'));
+        tabs.forEach(t => t.classList.remove('active'));
+
+        this.classList.add('active');
+        document.getElementById(target).classList.add('active');
       });
-
-      const hash = location.hash.substring(1) || "classificacao";
-      mostrarAba(hash);
     });
   </script>
 </body>
