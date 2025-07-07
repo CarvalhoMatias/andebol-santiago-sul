@@ -59,6 +59,11 @@
       padding: 2em 1em;
     }
 
+    h2, h3, h4 {
+      text-align: center;
+      font-weight: bold;
+    }
+
     section {
       display: none;
     }
@@ -122,25 +127,25 @@
 
   <main>
     <section id="classificacao" class="active">
-  <h2>Classificação - Sénior Masculino</h2>
-  <div id="classificacao-tabela">Carregando...</div>
-  <h2>Classificação - Sénior Feminino</h2>
-  <div id="classificacao-feminino">Carregando...</div>
-</section>
+      <h2>Classificação - Sénior Masculino</h2>
+      <div id="classificacao-tabela">Carregando...</div>
+      <h2>Classificação - Sénior Feminino</h2>
+      <div id="classificacao-feminino">Carregando...</div>
+    </section>
 
     <section id="resultados">
-  <h2>Resultados - Sénior Masculino</h2>
-  <div id="resultados-tabela">Carregando...</div>
-  <h2>Resultados - Sénior Feminino</h2>
-  <div id="resultados-feminino">Carregando...</div>
-</section>
+      <h2>Resultados - Sénior Masculino</h2>
+      <div id="resultados-tabela">Carregando...</div>
+      <h2>Resultados - Sénior Feminino</h2>
+      <div id="resultados-feminino">Carregando...</div>
+    </section>
 
     <section id="marcadores">
-  <h2>Melhores Marcadores - Sénior Masculino</h2>
-  <div id="marcadores-tabela">Carregando...</div>
-  <h2>Melhores Marcadores - Sénior Feminino</h2>
-  <div id="marcadores-feminino">Carregando...</div>
-</section>
+      <h2>Melhores Marcadores - Sénior Masculino</h2>
+      <div id="marcadores-tabela">Carregando...</div>
+      <h2>Melhores Marcadores - Sénior Feminino</h2>
+      <div id="marcadores-feminino">Carregando...</div>
+    </section>
   </main>
 
   <footer>
@@ -150,13 +155,13 @@
 
   <script>
     const tabelas = {
-  "classificacao-tabela": "https://docs.google.com/spreadsheets/d/e/2PACX-1vSmGgChlRuHWXjidxaYH9QLW-ICqBLqO3bXcQOXElNaffXDacs7eTb6qjEpMYKzSq-IFJN94i4ajbX-/pub?gid=0&single=true&output=csv",
-  "classificacao-feminino": "https://docs.google.com/spreadsheets/d/e/2PACX-1vT_BCGGvtUe-5jH0Yls7hhNA7TDFDQfm6zAiz-j87-sc5OEXwLOVaNSQU20tAtefgTBp87ZzhomfJVq/pub?gid=0&single=true&output=csv",
-  "resultados-tabela": "https://docs.google.com/spreadsheets/d/e/2PACX-1vSmGgChlRuHWXjidxaYH9QLW-ICqBLqO3bXcQOXElNaffXDacs7eTb6qjEpMYKzSq-IFJN94i4ajbX-/pub?gid=34368686&single=true&output=csv",
-  "resultados-feminino": "https://docs.google.com/spreadsheets/d/e/2PACX-1vT_BCGGvtUe-5jH0Yls7hhNA7TDFDQfm6zAiz-j87-sc5OEXwLOVaNSQU20tAtefgTBp87ZzhomfJVq/pub?gid=633813531&single=true&output=csv",
-  "marcadores-tabela": "https://docs.google.com/spreadsheets/d/e/2PACX-1vSmGgChlRuHWXjidxaYH9QLW-ICqBLqO3bXcQOXElNaffXDacs7eTb6qjEpMYKzSq-IFJN94i4ajbX-/pub?gid=498053061&single=true&output=csv",
-  "marcadores-feminino": "https://docs.google.com/spreadsheets/d/e/2PACX-1vT_BCGGvtUe-5jH0Yls7hhNA7TDFDQfm6zAiz-j87-sc5OEXwLOVaNSQU20tAtefgTBp87ZzhomfJVq/pub?gid=1661240807&single=true&output=csv"
-};
+      "classificacao-tabela": "https://docs.google.com/spreadsheets/d/e/2PACX-1vSmGgChlRuHWXjidxaYH9QLW-ICqBLqO3bXcQOXElNaffXDacs7eTb6qjEpMYKzSq-IFJN94i4ajbX-/pub?gid=0&single=true&output=csv",
+      "classificacao-feminino": "https://docs.google.com/spreadsheets/d/e/2PACX-1vT_BCGGvtUe-5jH0Yls7hhNA7TDFDQfm6zAiz-j87-sc5OEXwLOVaNSQU20tAtefgTBp87ZzhomfJVq/pub?gid=0&single=true&output=csv",
+      "resultados-tabela": "https://docs.google.com/spreadsheets/d/e/2PACX-1vSmGgChlRuHWXjidxaYH9QLW-ICqBLqO3bXcQOXElNaffXDacs7eTb6qjEpMYKzSq-IFJN94i4ajbX-/pub?gid=34368686&single=true&output=csv",
+      "resultados-feminino": "https://docs.google.com/spreadsheets/d/e/2PACX-1vT_BCGGvtUe-5jH0Yls7hhNA7TDFDQfm6zAiz-j87-sc5OEXwLOVaNSQU20tAtefgTBp87ZzhomfJVq/pub?gid=633813531&single=true&output=csv",
+      "marcadores-tabela": "https://docs.google.com/spreadsheets/d/e/2PACX-1vSmGgChlRuHWXjidxaYH9QLW-ICqBLqO3bXcQOXElNaffXDacs7eTb6qjEpMYKzSq-IFJN94i4ajbX-/pub?gid=498053061&single=true&output=csv",
+      "marcadores-feminino": "https://docs.google.com/spreadsheets/d/e/2PACX-1vT_BCGGvtUe-5jH0Yls7hhNA7TDFDQfm6zAiz-j87-sc5OEXwLOVaNSQU20tAtefgTBp87ZzhomfJVq/pub?gid=1661240807&single=true&output=csv"
+    };
 
     async function carregarTabela(id, url) {
       try {
@@ -164,11 +169,11 @@
         const text = await response.text();
         const linhas = text.trim().split("\n").map(l => l.split(","));
         let html = "<table><thead><tr>";
-        linhas[0].forEach(c => html += <th>${c}</th>);
+        linhas[0].forEach(c => html += `<th>${c}</th>`);
         html += "</tr></thead><tbody>";
         for (let i = 1; i < linhas.length; i++) {
           html += "<tr>";
-          linhas[i].forEach(c => html += <td>${c}</td>);
+          linhas[i].forEach(c => html += `<td>${c}</td>`);
           html += "</tr>";
         }
         html += "</tbody></table>";
@@ -187,7 +192,7 @@
 
     window.onload = () => {
       for (const id in tabelas) carregarTabela(id, tabelas[id]);
-    }
+    };
   </script>
 </body>
 </html>
