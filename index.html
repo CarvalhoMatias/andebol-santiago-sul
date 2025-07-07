@@ -174,11 +174,18 @@
   <script>
     function mostrarAba(id, el) {
       document.querySelectorAll("nav a").forEach(a => a.classList.remove("active"));
-      el.classList.add("active");
+      if (el) el.classList.add("active");
       document.querySelectorAll("main section").forEach(s => s.classList.remove("active"));
       document.getElementById(id).classList.add("active");
       localStorage.setItem("abaAtual", id);
     }
+
+    window.onload = () => {
+      const abaHash = location.hash?.substring(1);
+      const abaSalva = abaHash || localStorage.getItem("abaAtual") || "classificacao";
+      const abaEl = document.querySelector(`nav a[href="#${abaSalva}"]`);
+      if (abaEl) mostrarAba(abaSalva, abaEl);
+    };
   </script>
 </body>
 </html>
