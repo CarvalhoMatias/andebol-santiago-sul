@@ -12,26 +12,22 @@
       --text: #222;
       --accent: #ff6f00;
     }
-
     body {
       margin: 0;
       font-family: 'Montserrat', sans-serif;
       background: var(--background);
       color: var(--text);
     }
-
     header {
       background-color: var(--primary);
       padding: 1.5em 1em;
       text-align: center;
       color: white;
     }
-
     header img {
       height: 60px;
       margin-bottom: 0.5em;
     }
-
     nav {
       background: white;
       padding: 1em;
@@ -41,7 +37,6 @@
       box-shadow: 0 2px 6px rgba(0,0,0,0.05);
       flex-wrap: wrap;
     }
-
     nav a {
       text-decoration: none;
       color: var(--primary);
@@ -54,32 +49,69 @@
       gap: 0.5em;
       font-size: 1rem;
     }
-
     nav a:hover, nav a.active {
       background: #e8f5e9;
       transform: scale(1.05);
     }
-
     main {
       max-width: 1100px;
       margin: auto;
       padding: 2em 1em;
     }
-
-    h2, h3, h4 {
+    h2, h3 {
       text-align: center;
       font-weight: bold;
     }
-
-    section {
+    .epoca {
       display: none;
     }
-
-    section.active {
+    .epoca.active {
       display: block;
       animation: fadeIn 0.3s ease-in-out;
     }
-
+    .tabs-epoca {
+      text-align: center;
+      margin: 1em 0;
+    }
+    .tabs-epoca button {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 0.6em 1.2em;
+      margin: 0 0.3em;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .tabs-epoca button.active {
+      background: var(--accent);
+    }
+    .subtabs {
+      display: flex;
+      justify-content: center;
+      gap: 1em;
+      margin-bottom: 1em;
+      flex-wrap: wrap;
+    }
+    .subtabs button {
+      background: white;
+      border: 2px solid var(--primary);
+      color: var(--primary);
+      padding: 0.5em 1em;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .subtabs button.active {
+      background: var(--primary);
+      color: white;
+    }
+    .conteudo {
+      display: none;
+    }
+    .conteudo.active {
+      display: block;
+    }
     table {
       width: 100%;
       border-collapse: collapse;
@@ -91,23 +123,19 @@
       display: block;
       overflow-x: auto;
     }
-
     th, td {
       padding: 12px;
       text-align: center;
       border-bottom: 1px solid #eee;
       white-space: nowrap;
     }
-
     th {
       background: var(--primary);
       color: white;
     }
-
     tr:nth-child(even) {
       background: #f1f8f5;
     }
-
     footer {
       background-color: var(--primary);
       color: white;
@@ -115,7 +143,6 @@
       padding: 1em;
       margin-top: 3em;
     }
-
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(10px); }
       to { opacity: 1; transform: translateY(0); }
@@ -124,53 +151,72 @@
 </head>
 <body>
   <header>
-    <img src="20250506_1330_Logotipo de Andebol Sul_remix_01jtk01hdsenvbcs12ch68jjd1.png" alt="Logo ARASSUL">
+    <img src="logo.png" alt="Logo ARASSUL">
     <h1>Regional de Andebol Santiago Sul</h1>
-    <p>Temporada 2024/2025</p>
   </header>
 
-  <nav>
-    <a href="#classificacao" onclick="mostrarAba('classificacao', this)" class="active">📊 Classificação</a>
-    <a href="#resultados" onclick="mostrarAba('resultados', this)">🏆 Resultados</a>
-    <a href="#marcadores" onclick="mostrarAba('marcadores', this)">🔍 Melhores Marcadores</a>
-  </nav>
+  <div class="tabs-epoca">
+    <button onclick="mostrarEpoca('epoca2024', this)" class="active">Época 2024/25</button>
+    <button onclick="mostrarEpoca('epoca2025', this)">Época 2025/26</button>
+  </div>
 
   <main>
-    <section id="classificacao" class="active">
-      <h2>Classificação - Sénior Masculino</h2>
-      <div id="classificacao-tabela">Carregando...</div>
-      <h2>Classificação - Sénior Feminino</h2>
-      <div id="classificacao-feminino">Carregando...</div>
-    </section>
+    <!-- Época 2024/25 -->
+    <div id="epoca2024" class="epoca active">
+      <div class="subtabs">
+        <button onclick="mostrarConteudo('class2024', this)" class="active">Classificação</button>
+        <button onclick="mostrarConteudo('res2024', this)">Resultados</button>
+        <button onclick="mostrarConteudo('marc2024', this)">Marcadores</button>
+      </div>
+      <div id="class2024" class="conteudo active">
+        <h2>Classificação 2024/25</h2>
+        <div id="classificacao-2024">Carregando...</div>
+      </div>
+      <div id="res2024" class="conteudo">
+        <h2>Resultados 2024/25</h2>
+        <div id="resultados-2024">Carregando...</div>
+      </div>
+      <div id="marc2024" class="conteudo">
+        <h2>Marcadores 2024/25</h2>
+        <div id="marcadores-2024">Carregando...</div>
+      </div>
+    </div>
 
-    <section id="resultados">
-      <h2>Resultados - Sénior Masculino</h2>
-      <div id="resultados-tabela">Carregando...</div>
-      <h2>Resultados - Sénior Feminino</h2>
-      <div id="resultados-feminino">Carregando...</div>
-    </section>
-
-    <section id="marcadores">
-      <h2>Melhores Marcadores - Sénior Masculino</h2>
-      <div id="marcadores-tabela">Carregando...</div>
-      <h2>Melhores Marcadores - Sénior Feminino</h2>
-      <div id="marcadores-feminino">Carregando...</div>
-    </section>
+    <!-- Época 2025/26 -->
+    <div id="epoca2025" class="epoca">
+      <div class="subtabs">
+        <button onclick="mostrarConteudo('class2025', this)" class="active">Classificação</button>
+        <button onclick="mostrarConteudo('res2025', this)">Resultados</button>
+        <button onclick="mostrarConteudo('marc2025', this)">Marcadores</button>
+      </div>
+      <div id="class2025" class="conteudo active">
+        <h2>Classificação 2025/26</h2>
+        <div id="classificacao-2025">Carregando...</div>
+      </div>
+      <div id="res2025" class="conteudo">
+        <h2>Resultados 2025/26</h2>
+        <div id="resultados-2025">Carregando...</div>
+      </div>
+      <div id="marc2025" class="conteudo">
+        <h2>Marcadores 2025/26</h2>
+        <div id="marcadores-2025">Carregando...</div>
+      </div>
+    </div>
   </main>
 
   <footer>
     &copy; 2025 ARASSUL - Associação Regional de Andebol de Santiago Sul<br>
-    📧 Contacto: <a href="mailto:arandebolssul@gmail.com" style="color: #ffcc80; text-decoration: none;">arandebolssul@gmail.com</a>
+    📧 <a href="mailto:arandebolssul@gmail.com" style="color: #ffcc80; text-decoration: none;">arandebolssul@gmail.com</a>
   </footer>
 
   <script>
     const tabelas = {
-      "classificacao-tabela": "https://docs.google.com/spreadsheets/d/e/2PACX-1vSmGgChlRuHWXjidxaYH9QLW-ICqBLqO3bXcQOXElNaffXDacs7eTb6qjEpMYKzSq-IFJN94i4ajbX-/pub?gid=0&single=true&output=csv",
-      "classificacao-feminino": "https://docs.google.com/spreadsheets/d/e/2PACX-1vT_BCGGvtUe-5jH0Yls7hhNA7TDFDQfm6zAiz-j87-sc5OEXwLOVaNSQU20tAtefgTBp87ZzhomfJVq/pub?gid=0&single=true&output=csv",
-      "resultados-tabela": "https://docs.google.com/spreadsheets/d/e/2PACX-1vSmGgChlRuHWXjidxaYH9QLW-ICqBLqO3bXcQOXElNaffXDacs7eTb6qjEpMYKzSq-IFJN94i4ajbX-/pub?gid=34368686&single=true&output=csv",
-      "resultados-feminino": "https://docs.google.com/spreadsheets/d/e/2PACX-1vT_BCGGvtUe-5jH0Yls7hhNA7TDFDQfm6zAiz-j87-sc5OEXwLOVaNSQU20tAtefgTBp87ZzhomfJVq/pub?gid=633813531&single=true&output=csv",
-      "marcadores-tabela": "https://docs.google.com/spreadsheets/d/e/2PACX-1vSmGgChlRuHWXjidxaYH9QLW-ICqBLqO3bXcQOXElNaffXDacs7eTb6qjEpMYKzSq-IFJN94i4ajbX-/pub?gid=498053061&single=true&output=csv",
-      "marcadores-feminino": "https://docs.google.com/spreadsheets/d/e/2PACX-1vT_BCGGvtUe-5jH0Yls7hhNA7TDFDQfm6zAiz-j87-sc5OEXwLOVaNSQU20tAtefgTBp87ZzhomfJVq/pub?gid=1661240807&single=true&output=csv"
+      "classificacao-2024": "LINK_CSV_CLASSIFICACAO_2024",
+      "resultados-2024": "LINK_CSV_RESULTADOS_2024",
+      "marcadores-2024": "LINK_CSV_MARCADORES_2024",
+      "classificacao-2025": "LINK_CSV_CLASSIFICACAO_2025",
+      "resultados-2025": "LINK_CSV_RESULTADOS_2025",
+      "marcadores-2025": "LINK_CSV_MARCADORES_2025"
     };
 
     async function carregarTabela(id, url) {
@@ -193,10 +239,18 @@
       }
     }
 
-    function mostrarAba(id, el) {
-      document.querySelectorAll("nav a").forEach(a => a.classList.remove("active"));
+    function mostrarEpoca(id, el) {
+      document.querySelectorAll(".tabs-epoca button").forEach(b => b.classList.remove("active"));
       el.classList.add("active");
-      document.querySelectorAll("main section").forEach(s => s.classList.remove("active"));
+      document.querySelectorAll(".epoca").forEach(s => s.classList.remove("active"));
+      document.getElementById(id).classList.add("active");
+    }
+
+    function mostrarConteudo(id, el) {
+      const container = el.closest(".epoca");
+      container.querySelectorAll(".subtabs button").forEach(b => b.classList.remove("active"));
+      el.classList.add("active");
+      container.querySelectorAll(".conteudo").forEach(c => c.classList.remove("active"));
       document.getElementById(id).classList.add("active");
     }
 
