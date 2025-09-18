@@ -2,264 +2,198 @@
 <html lang="pt">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Regional de Andebol Santiago Sul</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --primary: #66bb6a;
-      --background: #f9f9f9;
-      --text: #222;
-      --accent: #ff6f00;
+    :root{
+      --primary:#66bb6a; --bg:#f9f9f9; --text:#222; --accent:#ff6f00; --muted:#e8f5e9;
     }
-    body {
-      margin: 0;
-      font-family: 'Montserrat', sans-serif;
-      background: var(--background);
-      color: var(--text);
-    }
-    header {
-      background-color: var(--primary);
-      padding: 1.5em 1em;
-      text-align: center;
-      color: white;
-    }
-    header img {
-      height: 60px;
-      margin-bottom: 0.5em;
-    }
-    nav {
-      background: white;
-      padding: 1em;
-      display: flex;
-      justify-content: center;
-      gap: 1em;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-      flex-wrap: wrap;
-    }
-    nav a {
-      text-decoration: none;
-      color: var(--primary);
-      font-weight: bold;
-      padding: 0.6em 1.2em;
-      border-radius: 10px;
-      transition: background 0.3s, transform 0.2s;
-      display: flex;
-      align-items: center;
-      gap: 0.5em;
-      font-size: 1rem;
-    }
-    nav a:hover, nav a.active {
-      background: #e8f5e9;
-      transform: scale(1.05);
-    }
-    main {
-      max-width: 1100px;
-      margin: auto;
-      padding: 2em 1em;
-    }
-    h2, h3 {
-      text-align: center;
-      font-weight: bold;
-    }
-    .epoca {
-      display: none;
-    }
-    .epoca.active {
-      display: block;
-      animation: fadeIn 0.3s ease-in-out;
-    }
-    .tabs-epoca {
-      text-align: center;
-      margin: 1em 0;
-    }
-    .tabs-epoca button {
-      background: var(--primary);
-      color: white;
-      border: none;
-      padding: 0.6em 1.2em;
-      margin: 0 0.3em;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: bold;
-    }
-    .tabs-epoca button.active {
-      background: var(--accent);
-    }
-    .subtabs {
-      display: flex;
-      justify-content: center;
-      gap: 1em;
-      margin-bottom: 1em;
-      flex-wrap: wrap;
-    }
-    .subtabs button {
-      background: white;
-      border: 2px solid var(--primary);
-      color: var(--primary);
-      padding: 0.5em 1em;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: bold;
-    }
-    .subtabs button.active {
-      background: var(--primary);
-      color: white;
-    }
-    .conteudo {
-      display: none;
-    }
-    .conteudo.active {
-      display: block;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 1.5em;
-      background: white;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 1px 6px rgba(0,0,0,0.1);
-      display: block;
-      overflow-x: auto;
-    }
-    th, td {
-      padding: 12px;
-      text-align: center;
-      border-bottom: 1px solid #eee;
-      white-space: nowrap;
-    }
-    th {
-      background: var(--primary);
-      color: white;
-    }
-    tr:nth-child(even) {
-      background: #f1f8f5;
-    }
-    footer {
-      background-color: var(--primary);
-      color: white;
-      text-align: center;
-      padding: 1em;
-      margin-top: 3em;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:'Montserrat',sans-serif;background:var(--bg);color:var(--text)}
+    header{background:var(--primary);padding:1.25rem .75rem;text-align:center;color:#fff}
+    header img{height:60px;margin-bottom:.5rem}
+    .season-tabs,.subtabs{display:flex;gap:.5rem;flex-wrap:wrap;justify-content:center}
+    .season-tabs{background:#fff;padding:.6rem;box-shadow:0 2px 6px rgba(0,0,0,.06)}
+    .pill{border:0;background:#fff;color:var(--primary);font-weight:700;padding:.55rem 1rem;border-radius:999px;cursor:pointer}
+    .pill[aria-selected="true"]{background:var(--muted)}
+    main{max-width:1100px;margin:auto;padding:1rem}
+    h2,h3{font-weight:700;text-align:center;margin:1rem 0 .4rem}
+    .panel{display:none;animation:fade .25s ease}
+    .panel.active{display:block}
+    .card{background:#fff;border-radius:12px;box-shadow:0 1px 6px rgba(0,0,0,.08);padding:1rem;margin:1rem 0}
+    table{width:100%;border-collapse:collapse;overflow:hidden;border-radius:10px}
+    thead th{position:sticky;top:0;background:var(--primary);color:#fff;text-align:center}
+    th,td{padding:.65rem;text-align:center;border-bottom:1px solid #eee;white-space:nowrap}
+    tbody tr:nth-child(even){background:#f1f8f5}
+    .status{font-size:.95rem;opacity:.85;text-align:center}
+    .error{color:#c62828;text-align:center}
+    footer{background:var(--primary);color:#fff;text-align:center;padding:1rem;margin-top:2rem}
+    footer a{color:#ffcc80;text-decoration:none}
+    .subtabs{margin:.75rem 0 0}
+    .subtabs .pill[aria-selected="true"]{background:#eef7ef}
+    @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
   </style>
 </head>
 <body>
   <header>
-    <img src="logo.png" alt="Logo ARASSUL">
+    <img src="20250506_1330_Logotipo de Andebol Sul_remix_01jtk01hdsenvbcs12ch68jjd1.png" alt="Logo ARASSUL">
     <h1>Regional de Andebol Santiago Sul</h1>
+    <p>Temporada 2024/2025</p>
   </header>
 
-  <div class="tabs-epoca">
-    <button onclick="mostrarEpoca('epoca2024', this)" class="active">Época 2024/25</button>
-    <button onclick="mostrarEpoca('epoca2025', this)">Época 2025/26</button>
-  </div>
+  <!-- Abas por época -->
+  <nav class="season-tabs" role="tablist" aria-label="Épocas">
+    <button class="pill" role="tab" aria-selected="true" data-season="2024/25">Época 2024/25</button>
+    <button class="pill" role="tab" aria-selected="false" data-season="2025/26">Época 2025/26</button>
+  </nav>
+
+  <!-- Sub-abas -->
+  <nav class="subtabs" role="tablist" aria-label="Secções">
+    <button class="pill" role="tab" aria-selected="true" data-pane="classificacao">📊 Classificação</button>
+    <button class="pill" role="tab" aria-selected="false" data-pane="resultados">🏆 Resultados</button>
+    <button class="pill" role="tab" aria-selected="false" data-pane="marcadores">🔍 Melhores Marcadores</button>
+  </nav>
 
   <main>
-    <!-- Época 2024/25 -->
-    <div id="epoca2024" class="epoca active">
-      <div class="subtabs">
-        <button onclick="mostrarConteudo('class2024', this)" class="active">Classificação</button>
-        <button onclick="mostrarConteudo('res2024', this)">Resultados</button>
-        <button onclick="mostrarConteudo('marc2024', this)">Marcadores</button>
+    <!-- Classificação -->
+    <section id="pane-classificacao" class="panel active">
+      <h2>Classificação</h2>
+      <div class="card">
+        <h3>Sénior Masculino</h3>
+        <div id="classificacao-m" class="status">Carregando…</div>
       </div>
-      <div id="class2024" class="conteudo active">
-        <h2>Classificação 2024/25</h2>
-        <div id="classificacao-2024">Carregando...</div>
+      <div class="card">
+        <h3>Sénior Feminino</h3>
+        <div id="classificacao-f" class="status">Carregando…</div>
       </div>
-      <div id="res2024" class="conteudo">
-        <h2>Resultados 2024/25</h2>
-        <div id="resultados-2024">Carregando...</div>
-      </div>
-      <div id="marc2024" class="conteudo">
-        <h2>Marcadores 2024/25</h2>
-        <div id="marcadores-2024">Carregando...</div>
-      </div>
-    </div>
+    </section>
 
-    <!-- Época 2025/26 -->
-    <div id="epoca2025" class="epoca">
-      <div class="subtabs">
-        <button onclick="mostrarConteudo('class2025', this)" class="active">Classificação</button>
-        <button onclick="mostrarConteudo('res2025', this)">Resultados</button>
-        <button onclick="mostrarConteudo('marc2025', this)">Marcadores</button>
+    <!-- Resultados -->
+    <section id="pane-resultados" class="panel">
+      <h2>Resultados</h2>
+      <div class="card">
+        <h3>Sénior Masculino</h3>
+        <div id="resultados-m" class="status">Carregando…</div>
       </div>
-      <div id="class2025" class="conteudo active">
-        <h2>Classificação 2025/26</h2>
-        <div id="classificacao-2025">Carregando...</div>
+      <div class="card">
+        <h3>Sénior Feminino</h3>
+        <div id="resultados-f" class="status">Carregando…</div>
       </div>
-      <div id="res2025" class="conteudo">
-        <h2>Resultados 2025/26</h2>
-        <div id="resultados-2025">Carregando...</div>
+    </section>
+
+    <!-- Marcadores -->
+    <section id="pane-marcadores" class="panel">
+      <h2>Melhores Marcadores</h2>
+      <div class="card">
+        <h3>Sénior Masculino</h3>
+        <div id="marcadores-m" class="status">Carregando…</div>
       </div>
-      <div id="marc2025" class="conteudo">
-        <h2>Marcadores 2025/26</h2>
-        <div id="marcadores-2025">Carregando...</div>
+      <div class="card">
+        <h3>Sénior Feminino</h3>
+        <div id="marcadores-f" class="status">Carregando…</div>
       </div>
-    </div>
+    </section>
   </main>
 
   <footer>
-    &copy; 2025 ARASSUL - Associação Regional de Andebol de Santiago Sul<br>
-    📧 <a href="mailto:arandebolssul@gmail.com" style="color: #ffcc80; text-decoration: none;">arandebolssul@gmail.com</a>
+    &copy; 2025 ARASSUL — Associação Regional de Andebol de Santiago Sul<br/>
+    📧 <a href="mailto:arandebolssul@gmail.com">arandebolssul@gmail.com</a>
   </footer>
 
   <script>
-    const tabelas = {
-      // 2024/25
-      "classificacao-2024": "https://docs.google.com/spreadsheets/d/e/2PACX-1vSmGgChlRuHWXjidxaYH9QLW-ICqBLqO3bXcQOXElNaffXDacs7eTb6qjEpMYKzSq-IFJN94i4ajbX-/pub?gid=0&single=true&output=csv",
-      "resultados-2024": "https://docs.google.com/spreadsheets/d/e/2PACX-1vSmGgChlRuHWXjidxaYH9QLW-ICqBLqO3bXcQOXElNaffXDacs7eTb6qjEpMYKzSq-IFJN94i4ajbX-/pub?gid=34368686&single=true&output=csv",
-      "marcadores-2024": "https://docs.google.com/spreadsheets/d/e/2PACX-1vSmGgChlRuHWXjidxaYH9QLW-ICqBLqO3bXcQOXElNaffXDacs7eTb6qjEpMYKzSq-IFJN94i4ajbX-/pub?gid=498053061&single=true&output=csv",
-
-      // 2025/26
-      "classificacao-2025": "https://docs.google.com/spreadsheets/d/e/2PACX-1vSmGgChlRuHWXjidxaYH9QLW-ICqBLqO3bXcQOXElNaffXDacs7eTb6qjEpMYKzSq-IFJN94i4ajbX-/pub?gid=2147068314&single=true&output=csv",
-      "resultados-2025": "https://docs.google.com/spreadsheets/d/e/2PACX-1vSmGgChlRuHWXjidxaYH9QLW-ICqBLqO3bXcQOXElNaffXDacs7eTb6qjEpMYKzSq-IFJN94i4ajbX-/pub?gid=512983186&single=true&output=csv",
-      "marcadores-2025": "https://docs.google.com/spreadsheets/d/e/2PACX-1vSmGgChlRuHWXjidxaYH9QLW-ICqBLqO3bXcQOXElNaffXDacs7eTb6qjEpMYKzSq-IFJN94i4ajbX-/pub?gid=498053061&single=true&output=csv"
+    const DATA = {
+      "2024/25": {
+        classificacao: {
+          m: "https://docs.google.com/spreadsheets/d/e/2PACX-1vSmGgChlRuHWXjidxaYH9QLW-ICqBLqO3bXcQOXElNaffXDacs7eTb6qjEpMYKzSq-IFJN94i4ajbX-/pub?gid=0&single=true&output=csv",
+          f: "https://docs.google.com/spreadsheets/d/e/2PACX-1vT_BCGGvtUe-5jH0Yls7hhNA7TDFDQfm6zAiz-j87-sc5OEXwLOVaNSQU20tAtefgTBp87ZzhomfJVq/pub?gid=0&single=true&output=csv"
+        },
+        resultados: {
+          m: "https://docs.google.com/spreadsheets/d/e/2PACX-1vSmGgChlRuHWXjidxaYH9QLW-ICqBLqO3bXcQOXElNaffXDacs7eTb6qjEpMYKzSq-IFJN94i4ajbX-/pub?gid=34368686&single=true&output=csv",
+          f: "https://docs.google.com/spreadsheets/d/e/2PACX-1vT_BCGGvtUe-5jH0Yls7hhNA7TDFDQfm6zAiz-j87-sc5OEXwLOVaNSQU20tAtefgTBp87ZzhomfJVq/pub?gid=633813531&single=true&output=csv"
+        },
+        marcadores: {
+          m: "https://docs.google.com/spreadsheets/d/e/2PACX-1vSmGgChlRuHWXjidxaYH9QLW-ICqBLqO3bXcQOXElNaffXDacs7eTb6qjEpMYKzSq-IFJN94i4ajbX-/pub?gid=498053061&single=true&output=csv",
+          f: "https://docs.google.com/spreadsheets/d/e/2PACX-1vT_BCGGvtUe-5jH0Yls7hhNA7TDFDQfm6zAiz-j87-sc5OEXwLOVaNSQU20tAtefgTBp87ZzhomfJVq/pub?gid=1661240807&single=true&output=html"
+        }
+      },
+      "2025/26": {
+        classificacao: {
+          m: "https://docs.google.com/spreadsheets/d/e/2PACX-1vSmGgChlRuHWXjidxaYH9QLW-ICqBLqO3bXcQOXElNaffXDacs7eTb6qjEpMYKzSq-IFJN94i4ajbX-/pub?gid=2147068314&single=true&output=csv",
+          f: "https://docs.google.com/spreadsheets/d/e/2PACX-1vSmGgChlRuHWXjidxaYH9QLW-ICqBLqO3bXcQOXElNaffXDacs7eTb6qjEpMYKzSq-IFJN94i4ajbX-/pub?gid=669063797&single=true&output=csv"
+        },
+        resultados: {
+          m: "https://docs.google.com/spreadsheets/d/e/2PACX-1vSmGgChlRuHWXjidxaYH9QLW-ICqBLqO3bXcQOXElNaffXDacs7eTb6qjEpMYKzSq-IFJN94i4ajbX-/pub?gid=512983186&single=true&output=csv",
+          f: "https://docs.google.com/spreadsheets/d/e/2PACX-1vT_BCGGvtUe-5jH0Yls7hhNA7TDFDQfm6zAiz-j87-sc5OEXwLOVaNSQU20tAtefgTBp87ZzhomfJVq/pub?gid=578159741&single=true&output=csv"
+        },
+        marcadores: {
+          m: "https://docs.google.com/spreadsheets/d/e/2PACX-1vSmGgChlRuHWXjidxaYH9QLW-ICqBLqO3bXcQOXElNaffXDacs7eTb6qjEpMYKzSq-IFJN94i4ajbX-/pub?gid=498053061&single=true&output=csv",
+          f: "https://docs.google.com/spreadsheets/d/e/2PACX-1vT_BCGGvtUe-5jH0Yls7hhNA7TDFDQfm6zAiz-j87-sc5OEXwLOVaNSQU20tAtefgTBp87ZzhomfJVq/pub?gid=76673008&single=true&output=csv"
+        }
+      }
     };
 
-    async function carregarTabela(id, url) {
-      try {
-        const response = await fetch(url);
-        const text = await response.text();
-        const linhas = text.trim().split("\n").map(l => l.split(","));
+    let season = "2024/25";
+    let pane = "classificacao";
+
+    function pickURL(type, sex){
+      return DATA[season]?.[type]?.[sex] || "";
+    }
+
+    async function carregarTabela(id, url){
+      const el = document.getElementById(id);
+      if (!url){ el.innerHTML = "<p class='status'>Em breve…</p>"; return; }
+      try{
+        const resp = await fetch(url);
+        const text = await resp.text();
+        const linhas = text.trim().split("\n").map(l=>l.split(","));
         let html = "<table><thead><tr>";
-        linhas[0].forEach(c => html += `<th>${c}</th>`);
+        linhas[0].forEach(c=>html += `<th>${c}</th>`);
         html += "</tr></thead><tbody>";
-        for (let i = 1; i < linhas.length; i++) {
+        for(let i=1;i<linhas.length;i++){
           html += "<tr>";
-          linhas[i].forEach(c => html += `<td>${c}</td>`);
+          linhas[i].forEach(c=>html += `<td>${c}</td>`);
           html += "</tr>";
         }
         html += "</tbody></table>";
-        document.getElementById(id).innerHTML = html;
-      } catch {
-        document.getElementById(id).innerHTML = "<p style='color:red;'>Erro ao carregar dados.</p>";
+        el.innerHTML = html;
+      }catch(e){ el.innerHTML = "<p class='error'>Erro ao carregar dados.</p>"; }
+    }
+
+    function render(){
+      if(pane==="classificacao"){
+        carregarTabela("classificacao-m", pickURL("classificacao","m"));
+        carregarTabela("classificacao-f", pickURL("classificacao","f"));
+      }else if(pane==="resultados"){
+        carregarTabela("resultados-m", pickURL("resultados","m"));
+        carregarTabela("resultados-f", pickURL("resultados","f"));
+      }else if(pane==="marcadores"){
+        carregarTabela("marcadores-m", pickURL("marcadores","m"));
+        carregarTabela("marcadores-f", pickURL("marcadores","f"));
       }
     }
 
-    function mostrarEpoca(id, el) {
-      document.querySelectorAll(".tabs-epoca button").forEach(b => b.classList.remove("active"));
-      el.classList.add("active");
-      document.querySelectorAll(".epoca").forEach(s => s.classList.remove("active"));
-      document.getElementById(id).classList.add("active");
-    }
+    document.querySelectorAll(".season-tabs .pill").forEach(btn=>{
+      btn.addEventListener("click",()=>{
+        season=btn.dataset.season;
+        document.querySelectorAll(".season-tabs .pill").forEach(b=>b.setAttribute("aria-selected","false"));
+        btn.setAttribute("aria-selected","true");
+        render();
+      });
+    });
 
-    function mostrarConteudo(id, el) {
-      const container = el.closest(".epoca");
-      container.querySelectorAll(".subtabs button").forEach(b => b.classList.remove("active"));
-      el.classList.add("active");
-      container.querySelectorAll(".conteudo").forEach(c => c.classList.remove("active"));
-      document.getElementById(id).classList.add("active");
-    }
+    document.querySelectorAll(".subtabs .pill").forEach(btn=>{
+      btn.addEventListener("click",()=>{
+        pane=btn.dataset.pane;
+        document.querySelectorAll(".subtabs .pill").forEach(b=>b.setAttribute("aria-selected","false"));
+        btn.setAttribute("aria-selected","true");
+        document.querySelectorAll(".panel").forEach(p=>p.classList.remove("active"));
+        document.getElementById("pane-"+pane).classList.add("active");
+        render();
+      });
+    });
 
-    window.onload = () => {
-      for (const id in tabelas) carregarTabela(id, tabelas[id]);
-    };
+    window.onload=()=>{render();};
   </script>
 </body>
 </html>
