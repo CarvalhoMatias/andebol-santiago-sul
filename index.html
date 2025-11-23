@@ -181,7 +181,7 @@
 
     document.querySelectorAll(".season-tabs .pill").forEach(btn=>{
       btn.addEventListener("click",()=>{
-        season=btn.dataset.season;
+        season = btn.dataset.season;
         document.querySelectorAll(".season-tabs .pill").forEach(b=>b.setAttribute("aria-selected","false"));
         btn.setAttribute("aria-selected","true");
         render();
@@ -190,11 +190,11 @@
 
     document.querySelectorAll(".subtabs .pill").forEach(btn=>{
       btn.addEventListener("click",()=>{
-        pane=btn.dataset.pane;
+        pane = btn.dataset.pane;
         document.querySelectorAll(".subtabs .pill").forEach(b=>b.setAttribute("aria-selected","false"));
         btn.setAttribute("aria-selected","true");
         document.querySelectorAll(".panel").forEach(p=>p.classList.remove("active"));
-        document.getElementById("pane-"+pane).classList.add("active"));
+        document.getElementById("pane-"+pane).classList.add("active");
         render();
       });
     });
