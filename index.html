@@ -114,7 +114,7 @@
         },
         marcadores: {
           m: "https://docs.google.com/spreadsheets/d/e/2PACX-1vSmGgChlRuHWXjidxaYH9QLW-ICqBLqO3bXcQOXElNaffXDacs7eTb6qjEpMYKzSq-IFJN94i4ajbX-/pub?gid=498053061&single=true&output=csv",
-          f: "https://docs.google.com/spreadsheets/d/e/2PACX-1vT_BCGGvtUe-5jH0Yls7hhNA7TDFDQfm6zAiz-j87-sc5OEXwLOVaNSQU20tAtefgTBp87ZzhomfJVq/pub?gid=1661240807&single=true&output=html"
+          f: "https://docs.google.com/spreadsheets/d/e/2PACX-1vT_BCGGvtUe-5jH0Yls7hhNA7TDFDQfm6zAiz-j87-sc5OEXwLOVaNSQU20tAtefgTBp87ZzhomfJVq/pub?gid=0&single=true&output=csv"
         }
       },
       "2025/26": {
@@ -157,7 +157,10 @@
         }
         html += "</tbody></table>";
         el.innerHTML = html;
-      }catch(e){ el.innerHTML = "<p class='error'>Erro ao carregar dados.</p>"; }
+      }catch(e){ 
+        console.error(e);
+        el.innerHTML = "<p class='error'>Erro ao carregar dados.</p>"; 
+      }
     }
 
     function render(){
