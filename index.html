@@ -42,11 +42,13 @@
     <p>Temporada 2024/2025</p>
   </header>
 
+  <!-- Abas por época -->
   <nav class="season-tabs" role="tablist" aria-label="Épocas">
     <button class="pill" role="tab" aria-selected="true" data-season="2024/25">Época 2024/25</button>
     <button class="pill" role="tab" aria-selected="false" data-season="2025/26">Época 2025/26</button>
   </nav>
 
+  <!-- Sub-abas -->
   <nav class="subtabs" role="tablist" aria-label="Secções">
     <button class="pill" role="tab" aria-selected="true" data-pane="classificacao">📊 Classificação</button>
     <button class="pill" role="tab" aria-selected="false" data-pane="resultados">🏆 Resultados</button>
@@ -54,6 +56,7 @@
   </nav>
 
   <main>
+    <!-- Classificação -->
     <section id="pane-classificacao" class="panel active">
       <h2>Classificação</h2>
       <div class="card">
@@ -66,6 +69,7 @@
       </div>
     </section>
 
+    <!-- Resultados -->
     <section id="pane-resultados" class="panel">
       <h2>Resultados</h2>
       <div class="card">
@@ -78,6 +82,7 @@
       </div>
     </section>
 
+    <!-- Marcadores -->
     <section id="pane-marcadores" class="panel">
       <h2>Melhores Marcadores</h2>
       <div class="card">
@@ -109,7 +114,7 @@
         },
         marcadores: {
           m: "https://docs.google.com/spreadsheets/d/e/2PACX-1vSmGgChlRuHWXjidxaYH9QLW-ICqBLqO3bXcQOXElNaffXDacs7eTb6qjEpMYKzSq-IFJN94i4ajbX-/pub?gid=498053061&single=true&output=csv",
-          f: "https://docs.google.com/spreadsheets/d/e/2PACX-1vT_BCGGvtUe-5jH0Yls7hhNA7TDFDQfm6zAiz-j87-sc5OEXwLOVaNSQU20tAtefgTBp87ZzhomfJVq/pub?gid=0&single=true&output=csv"
+          f: "https://docs.google.com/spreadsheets/d/e/2PACX-1vT_BCGGvtUe-5jH0Yls7hhNA7TDFDQfm6zAiz-j87-sc5OEXwLOVaNSQU20tAtefgTBp87ZzhomfJVq/pub?gid=1661240807&single=true&output=csv"
         }
       },
       "2025/26": {
@@ -152,9 +157,9 @@
         }
         html += "</tbody></table>";
         el.innerHTML = html;
-      }catch(e){ 
+      }catch(e){
         console.error(e);
-        el.innerHTML = "<p class='error'>Erro ao carregar dados.</p>"; 
+        el.innerHTML = "<p class='error'>Erro ao carregar dados.</p>";
       }
     }
 
@@ -191,7 +196,7 @@
       });
     });
 
-    window.onload=()=>{render();};
+    window.onload = () => { render(); };
   </script>
 </body>
 </html>
